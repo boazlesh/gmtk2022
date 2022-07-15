@@ -1,4 +1,6 @@
-# GMTK 2022 - "UNTITLED DICE GAME"
+# GMTK 2022 - "UNTITLED BATTLE NETWORK BLACKJACK GAME"
+
+You are a die. the enemies are dice. You shoot dice. You pick attacks using dice. Everything is dice.
 
 ## Ideas
 
