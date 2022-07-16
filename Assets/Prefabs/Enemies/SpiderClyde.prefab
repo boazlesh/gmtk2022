@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661187108823288402}
-  - component: {fileID: 661187108823288400}
+  - component: {fileID: 6869842057120216787}
+  - component: {fileID: 735235198629103604}
   m_Layer: 0
   m_Name: SpiderClyde
   m_TagString: Untagged
@@ -25,14 +26,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661187108823288403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: -1.5, z: -1.5}
+  m_LocalPosition: {x: 0, y: -0, z: -0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1398478070034920897}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &661187108823288400
+--- !u!114 &6869842057120216787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,12 +42,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 661187108823288403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f593dd9d2b2f6f54f81cf3d05138f501, type: 3}
+  m_Script: {fileID: 11500000, guid: 5445e5cb1b8556243aeac2b6ede7c8bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _actionCooldownSeconds: 1
   _actionInstance: {fileID: 11400000, guid: 3c07cf767ed2cca498153d35bbb5061d, type: 2}
-  _boardPosition: {x: 2, y: 1}
+  _boardPosition: {x: 0, y: 0}
+--- !u!114 &735235198629103604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661187108823288403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40a5eebc36b90c4aba4d5d0ff87a456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 12
+  _healthDisplay: {fileID: 5335289636200337658}
 --- !u!1 &6591598362041512084
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +89,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8586991752057270854}
   m_Father: {fileID: 661187108823288402}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,3 +145,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &3242012497852709564
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1398478070034920897}
+    m_Modifications:
+    - target: {fileID: 6617739143046105338, guid: c49defa23e476354c87da4b505c8acd9, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617739143046105338, guid: c49defa23e476354c87da4b505c8acd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617739143046105338, guid: c49defa23e476354c87da4b505c8acd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617739143046105338, guid: c49defa23e476354c87da4b505c8acd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113766429910640503, guid: c49defa23e476354c87da4b505c8acd9, type: 3}
+      propertyPath: m_Name
+      value: HealthDisplayHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 8204602152997203713, guid: c49defa23e476354c87da4b505c8acd9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c49defa23e476354c87da4b505c8acd9, type: 3}
+--- !u!4 &8586991752057270854 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6617739143046105338, guid: c49defa23e476354c87da4b505c8acd9, type: 3}
+  m_PrefabInstance: {fileID: 3242012497852709564}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5335289636200337658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7419452342797888070, guid: c49defa23e476354c87da4b505c8acd9, type: 3}
+  m_PrefabInstance: {fileID: 3242012497852709564}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7e0ce3eca9582478026a128512fc63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
