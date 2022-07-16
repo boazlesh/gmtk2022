@@ -363,6 +363,10 @@ PrefabInstance:
       propertyPath: _color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 905448466040028513, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
+      propertyPath: _actionSprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 2083330718526404006, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -375,6 +379,10 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 0.6226415
       objectReference: {fileID: 0}
+    - target: {fileID: 4068502819351120702, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8551036068446952166, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_Name
       value: GreenAction
@@ -493,6 +501,10 @@ PrefabInstance:
       propertyPath: _color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 905448466040028513, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
+      propertyPath: _actionSprite
+      value: 
+      objectReference: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 2083330718526404006, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -505,6 +517,10 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 0.16341001
       objectReference: {fileID: 0}
+    - target: {fileID: 4068502819351120702, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8551036068446952166, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_Name
       value: BlueAction
