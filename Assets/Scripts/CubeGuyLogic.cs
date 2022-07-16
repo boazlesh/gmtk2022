@@ -1,5 +1,6 @@
 using Assets.Scripts;
 using Assets.Scripts.Utils;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,9 @@ public class CubeGuyLogic : MonoBehaviour
 
     private AudioSource _audioSource;
     private Animator _animator;
+
+    public event Action OnCustomScreenEnter;
+    public event Action OnCustomScreenExit;
 
     public Vector2Int _boardPosition;
     private Input _input;
@@ -190,9 +194,13 @@ public class CubeGuyLogic : MonoBehaviour
 
         _input.Disable();
 
+        OnCustomScreenEnter?.Invoke();
+
         yield return _customScreen.SelectActionsRoutine().GetResult(resultWrapper);
 
         _isInCustomScreen = false;
+
+        OnCustomScreenExit?.Invoke();
 
         _actionInstances = resultWrapper.Value;
         ColorFaces();
