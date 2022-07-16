@@ -44,7 +44,6 @@ namespace Assets.Scripts
                 return;
             }
 
-
             if (_isEnemy)
             {
                 CubeGuyLogic player = collision.transform.GetComponentInParent<CubeGuyLogic>();
@@ -68,7 +67,10 @@ namespace Assets.Scripts
                 }
             }
 
-            Destroy(gameObject);
+            if (!_isAlive)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
