@@ -73,6 +73,8 @@
     <Compile Include="Assets\Scripts\Utils\CoroutineResult.cs" />
     <Compile Include="Assets\Scripts\ActionInstance.cs" />
     <Compile Include="Assets\Scripts\Utils\CoroutineExtensions.cs" />
+    <Compile Include="Assets\Scripts\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\FaceColorMapping.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -49,6 +49,14 @@ public class @Input : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""99745c16-d5e8-4611-ae00-e53ef155477e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -183,6 +191,17 @@ public class @Input : IInputActionCollection, IDisposable
                     ""action"": ""MoveRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f058bc81-edf8-4051-a49a-38fbd7f51447"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -195,6 +214,7 @@ public class @Input : IInputActionCollection, IDisposable
         m_BattleActionMap_MoveDown = m_BattleActionMap.FindAction("MoveDown", throwIfNotFound: true);
         m_BattleActionMap_MoveLeft = m_BattleActionMap.FindAction("MoveLeft", throwIfNotFound: true);
         m_BattleActionMap_MoveRight = m_BattleActionMap.FindAction("MoveRight", throwIfNotFound: true);
+        m_BattleActionMap_Pause = m_BattleActionMap.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -248,6 +268,7 @@ public class @Input : IInputActionCollection, IDisposable
     private readonly InputAction m_BattleActionMap_MoveDown;
     private readonly InputAction m_BattleActionMap_MoveLeft;
     private readonly InputAction m_BattleActionMap_MoveRight;
+    private readonly InputAction m_BattleActionMap_Pause;
     public struct BattleActionMapActions
     {
         private @Input m_Wrapper;
@@ -256,6 +277,7 @@ public class @Input : IInputActionCollection, IDisposable
         public InputAction @MoveDown => m_Wrapper.m_BattleActionMap_MoveDown;
         public InputAction @MoveLeft => m_Wrapper.m_BattleActionMap_MoveLeft;
         public InputAction @MoveRight => m_Wrapper.m_BattleActionMap_MoveRight;
+        public InputAction @Pause => m_Wrapper.m_BattleActionMap_Pause;
         public InputActionMap Get() { return m_Wrapper.m_BattleActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -277,6 +299,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @MoveRight.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMoveRight;
                 @MoveRight.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMoveRight;
                 @MoveRight.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMoveRight;
+                @Pause.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_BattleActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -293,6 +318,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @MoveRight.started += instance.OnMoveRight;
                 @MoveRight.performed += instance.OnMoveRight;
                 @MoveRight.canceled += instance.OnMoveRight;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -303,5 +331,6 @@ public class @Input : IInputActionCollection, IDisposable
         void OnMoveDown(InputAction.CallbackContext context);
         void OnMoveLeft(InputAction.CallbackContext context);
         void OnMoveRight(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
