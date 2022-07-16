@@ -2,6 +2,8 @@
 {
     public enum ActionType
     {
-        Cannon
+        Cannon,
+        Sword,
+        Heal
     }
 }

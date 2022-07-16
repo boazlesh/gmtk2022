@@ -14,12 +14,12 @@ public class ActionBlock : MonoBehaviour
     {
         _outlineImage.color = _color;
 
-        SetAction(new ActionModel { Sprite = _actionSprite });
+        SetAction(new ActionModel { _actionType = ActionType.Cannon});
     }
 
     public void SetAction(ActionModel actionModel)
     {
-        _actionImage.sprite = actionModel.Sprite;
-        _actionType = actionModel.ActionType;
+        _actionImage.sprite = actionModel._sprite;
+        _actionType = actionModel._actionType;
     }
 }
