@@ -8,7 +8,7 @@ namespace Assets.Scripts
 {
     public class CustomScreen : MonoBehaviour
     {
-        private const float rollTimeSeconds = 0.6f;
+        private const float rollTimeSeconds = 0.5f;
 
         [SerializeField] private ActionModel[] _actionLibrary;
 
@@ -29,12 +29,12 @@ namespace Assets.Scripts
         private void Start()
         {
             _redDieRollWindow.OnRoll += OnDieRoll;
-            _blueDieRollWindow.OnRoll += OnDieRoll;
             _greenDieRollWindow.OnRoll += OnDieRoll;
+            _blueDieRollWindow.OnRoll += OnDieRoll;
 
             _redDieRollWindow.OnRolled += OnDieRolled;
-            _blueDieRollWindow.OnRolled += OnDieRolled;
             _greenDieRollWindow.OnRolled += OnDieRolled;
+            _blueDieRollWindow.OnRolled += OnDieRolled;
         }
 
         public IEnumerator SelectActionsRoutine()
@@ -59,14 +59,14 @@ namespace Assets.Scripts
                 actionInstances.Add(FaceColor.Red, new ActionInstance { Action = _redActionBlock.GetAction(), Potency = _redDieRollWindow.GetSum() });
             }
 
-            if (!_blueDieRollWindow.IsBust())
-            {
-                actionInstances.Add(FaceColor.Blue, new ActionInstance { Action = _blueActionBlock.GetAction(), Potency = _blueDieRollWindow.GetSum() });
-            }
-
             if (!_greenDieRollWindow.IsBust())
             {
                 actionInstances.Add(FaceColor.Green, new ActionInstance { Action = _greenActionBlock.GetAction(), Potency = _greenDieRollWindow.GetSum() });
+            }
+
+            if (!_blueDieRollWindow.IsBust())
+            {
+                actionInstances.Add(FaceColor.Blue, new ActionInstance { Action = _blueActionBlock.GetAction(), Potency = _blueDieRollWindow.GetSum() });
             }
 
             yield return actionInstances;
@@ -79,11 +79,11 @@ namespace Assets.Scripts
             _redActionBlock.SetFaceColor(FaceColor.Red);
             _redActionBlock.SetAction(_actionLibrary[0]);
 
-            _blueActionBlock.SetFaceColor(FaceColor.Blue);
-            _blueActionBlock.SetAction(_actionLibrary[1]);
-
             _greenActionBlock.SetFaceColor(FaceColor.Green);
-            _greenActionBlock.SetAction(_actionLibrary[2]);
+            _greenActionBlock.SetAction(_actionLibrary[1]);
+
+            _blueActionBlock.SetFaceColor(FaceColor.Blue);
+            _blueActionBlock.SetAction(_actionLibrary[2]);
         }
 
         public void SetDiceLeft(int diceLeft)
@@ -100,8 +100,8 @@ namespace Assets.Scripts
         private IEnumerator RollDiceRoutine()
         {
             yield return _redDieRollWindow.RollRoutine(rollTimeSeconds);
-            yield return _blueDieRollWindow.RollRoutine(rollTimeSeconds);
             yield return _greenDieRollWindow.RollRoutine(rollTimeSeconds);
+            yield return _blueDieRollWindow.RollRoutine(rollTimeSeconds);
         }
 
         private void OnDieRoll()
@@ -122,14 +122,14 @@ namespace Assets.Scripts
                 _redDieRollWindow.SetInteractable(interactable);
             }
 
-            if (!_blueDieRollWindow.IsBust())
-            {
-                _blueDieRollWindow.SetInteractable(interactable);
-            }
-
             if (!_greenDieRollWindow.IsBust())
             {
                 _greenDieRollWindow.SetInteractable(interactable);
+            }
+
+            if (!_blueDieRollWindow.IsBust())
+            {
+                _blueDieRollWindow.SetInteractable(interactable);
             }
         }
 

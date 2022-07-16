@@ -14,8 +14,7 @@ public class CubeGuyLogic : MonoBehaviour
     [SerializeField] private AudioClip _audioClipMove;
     [SerializeField] private FaceColorMapping _faceColorMapping;
     [SerializeField] private CustomScreen _customScreen;
-    [SerializeField] private Color _mutedColor = new Color(0.8f, 0.8f, 0.8f, 1.0f);
-    [SerializeField] private float _mutedColorStrength = 0.75f;
+    [SerializeField] private PlayerHud _playerHud;
 
     private AudioSource _audioSource;
     private Animator _animator;
@@ -70,22 +69,11 @@ public class CubeGuyLogic : MonoBehaviour
 
     private void ColorFaces()
     {
-        _spriteTop.color = _faceColorMapping.GetColorFromFaceColor(_faceTop);
-        _spriteFront.color = _faceColorMapping.GetColorFromFaceColor(_faceFront);
-        _spriteSide.color = _faceColorMapping.GetColorFromFaceColor(_faceSide);
+        _spriteTop.color = _faceColorMapping.GetColorFromFaceColor(_faceTop, !_actionInstances.ContainsKey(_faceTop));
+        _spriteFront.color = _faceColorMapping.GetColorFromFaceColor(_faceFront, !_actionInstances.ContainsKey(_faceFront));
+        _spriteSide.color = _faceColorMapping.GetColorFromFaceColor(_faceSide, !_actionInstances.ContainsKey(_faceSide));
 
-        if (!_actionInstances.ContainsKey(_faceTop))
-        {
-            _spriteTop.color = Color.Lerp(_spriteTop.color, _mutedColor, _mutedColorStrength);
-        }
-        if (!_actionInstances.ContainsKey(_faceFront))
-        {
-            _spriteFront.color = Color.Lerp(_spriteFront.color, _mutedColor, _mutedColorStrength);
-        }
-        if (!_actionInstances.ContainsKey(_faceSide))
-        {
-            _spriteSide.color = Color.Lerp(_spriteSide.color, _mutedColor, _mutedColorStrength);
-        }
+        _playerHud.UpdateActions(_actionInstances);
     }
 
     private void Move(Direction direction)
