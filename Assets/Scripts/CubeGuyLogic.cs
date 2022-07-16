@@ -251,6 +251,11 @@ public class CubeGuyLogic : MonoBehaviour
 
     private void UseTopAbility()
     {
+        if (_isMoveAnimationPlaying)
+        {
+            return;
+        }
+
         StartCoroutine(UseTopAbilityCoroutine());
     }
 
