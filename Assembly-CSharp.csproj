@@ -76,10 +76,12 @@
     <Compile Include="Assets\Scripts\FaceColorMapping.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
-    <Compile Include="Assets\EnemyLogic.cs" />
     <Compile Include="Assets\Scripts\MovementResult.cs" />
     <Compile Include="Assets\Scripts\PlayerHud.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\HealthDisplay.cs" />
+    <Compile Include="Assets\Scripts\HealthComponent.cs" />
+    <Compile Include="Assets\Scripts\EnemyLogic.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
