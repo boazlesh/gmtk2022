@@ -9,20 +9,40 @@ namespace Assets.Scripts
         [SerializeField] private Color _green;
         [SerializeField] private Color _blue;
         [SerializeField] private Color _gray;
+        [SerializeField] private Color _mutedColor = new Color(0.8f, 0.8f, 0.8f, 1.0f);
+        [SerializeField] private float _mutedColorStrength = 0.75f;
 
         public Color GetColorFromFaceColor(FaceColor faceColor)
         {
+            return GetColorFromFaceColor(faceColor, false);
+        }
+
+        public Color GetColorFromFaceColor(FaceColor faceColor, bool mute)
+        {
+            Color value;
+
             switch (faceColor)
             {
                 case FaceColor.Red:
-                    return _red;
+                    value = _red;
+                    break;
                 case FaceColor.Green:
-                    return _green;
+                    value = _green;
+                    break;
                 case FaceColor.Blue:
-                    return _blue;
+                    value = _blue;
+                    break;
                 default:
-                    return _gray;
+                    value = _gray;
+                    break;
             }
+
+            if (mute)
+            {
+                value = Color.Lerp(value, _mutedColor, _mutedColorStrength);
+            }
+
+            return value;
         }
     }
 }

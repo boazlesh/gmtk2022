@@ -60,7 +60,7 @@ namespace Assets
         {
             Die die = Instantiate(_diePrefab, _content);
 
-            die.SetColor(_faceColor);
+            die.SetColor(_faceColor, mute: false);
 
             yield return die.RollRandomFacesRoutine(rollTimeSeconds);
 
@@ -72,6 +72,7 @@ namespace Assets
             {
                 SetInteractable(false);
                 _sumLabel.text = "BUST!";
+                die.SetColor(_faceColor, mute: true);
 
                 yield break;
             }

@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class ActionBlock : MonoBehaviour
     [SerializeField] private Image _actionImage;
     [SerializeField] private Image _outlineImage;
     [SerializeField] private FaceColorMapping _faceColorMapping;
+    [SerializeField] private TextMeshProUGUI _text;
 
     private ActionModel _actionModel; 
 
@@ -19,12 +21,13 @@ public class ActionBlock : MonoBehaviour
         SetAction(new ActionModel { _actionType = ActionType.Cannon});
     }
 
-    public void SetFaceColor(FaceColor faceColor)
+    public void SetFaceColor(FaceColor faceColor, bool mute = false)
     {
-        Color color = _faceColorMapping.GetColorFromFaceColor(faceColor);
+        Color color = _faceColorMapping.GetColorFromFaceColor(faceColor, mute);
 
         _actionImage.color = color;
         _outlineImage.color = color;
+        _text.color = color;
     }
 
     public void SetAction(ActionModel actionModel)
@@ -32,6 +35,19 @@ public class ActionBlock : MonoBehaviour
         _actionModel = actionModel;
 
         _actionImage.sprite = actionModel._sprite;
+    }
+
+    public void SetText(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            _text.gameObject.SetActive(false);
+
+            return;
+        }
+
+        _text.text = text;
+        _text.gameObject.SetActive(true);
     }
 
     public ActionModel GetAction() => _actionModel;

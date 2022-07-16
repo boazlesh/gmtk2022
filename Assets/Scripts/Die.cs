@@ -19,7 +19,7 @@ namespace Assets.Scripts
         private void OnValidate()
         {
             SetFace(_dieFace);
-            SetColor(_faceColor);
+            SetColor(_faceColor, mute: false);
         }
 
         public IEnumerator RollRandomFacesRoutine(float timeSeconds)
@@ -44,7 +44,7 @@ namespace Assets.Scripts
             _dieImage.sprite = _dieFaceMapping.GetSprite(dieFace);
         }
 
-        public void SetColor(FaceColor faceColor)
+        public void SetColor(FaceColor faceColor, bool mute = false)
         {
             _faceColor = faceColor;
             _dieImage.color = _faceColorMapping.GetColorFromFaceColor(faceColor);
