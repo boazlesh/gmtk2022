@@ -50,6 +50,8 @@ public class CubeGuyLogic : MonoBehaviour
         _input.BattleActionMap.CustomScreen.performed += _ => EnterCustomScreenIfPossible();
         _input.BattleActionMap.UseTopAbility.performed += _ => UseTopAbility();
 
+        _playerHud._customGauge.OnCustomGaugeComplete += OnCustomGaugeComplete;
+
         PauseMenu.OnGamePause += () => _input.Disable();
         PauseMenu.OnGameResumed += () => _input.Enable();
     }
@@ -207,6 +209,9 @@ public class CubeGuyLogic : MonoBehaviour
         ColorFaces();
 
         _input.Enable();
+
+        _isCustomScreenAvailable = false;
+        _playerHud._customGauge.RunCustomGauge();
     }
 
     private void UseTopAbility()
@@ -233,5 +238,10 @@ public class CubeGuyLogic : MonoBehaviour
 
         Projectile projectile = Instantiate(abilityInstance.Action._projectilePrefab, parent: null);
         projectile.Initialize(_projectilePosition.transform.position, potency: abilityInstance.Potency, isEnemy: false);
+    }
+
+    private void OnCustomGaugeComplete()
+    {
+        _isCustomScreenAvailable = true;
     }
 }
