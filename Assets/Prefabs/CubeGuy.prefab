@@ -290,6 +290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c136f1ff8bd91b0469aef60908fc2c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _board: {fileID: 0}
+  _spriteTop: {fileID: 3463734516168273287}
+  _spriteFront: {fileID: 3463734514826035831}
+  _spriteSide: {fileID: 3463734515863175783}
 --- !u!1 &3463734516801210290
 GameObject:
   m_ObjectHideFlags: 0
