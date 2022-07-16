@@ -10,9 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8e931d6db1e6f7428b32cc7e52f4229, type: 3}
-  m_Name: New Die Face Mapping
+  m_Name: DieFaceMapping
   m_EditorClassIdentifier: 
   _fallbackSprite: {fileID: 0}
   _sprites:
-    list: []
+    list:
+    - Key: 0
+      Value: {fileID: 1611301075049141898, guid: ce03725309bb8a746a9d88af423ed4f3, type: 3}
+    - Key: 1
+      Value: {fileID: 6212602783285370487, guid: ce03725309bb8a746a9d88af423ed4f3, type: 3}
+    - Key: 2
+      Value: {fileID: 5575580412028786477, guid: ce03725309bb8a746a9d88af423ed4f3, type: 3}
+    - Key: 3
+      Value: {fileID: 1840230436223484749, guid: ce03725309bb8a746a9d88af423ed4f3, type: 3}
+    - Key: 4
+      Value: {fileID: -7447450885652767246, guid: ce03725309bb8a746a9d88af423ed4f3, type: 3}
+    - Key: 5
+      Value: {fileID: -9208722391262777734, guid: ce03725309bb8a746a9d88af423ed4f3, type: 3}
+    - Key: 6
+      Value: {fileID: -1757351011237085416, guid: ce03725309bb8a746a9d88af423ed4f3, type: 3}
     keyCollision: 0
