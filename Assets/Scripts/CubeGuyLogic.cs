@@ -19,6 +19,7 @@ public class CubeGuyLogic : MonoBehaviour
     private FaceColor _faceSide = FaceColor.Green;
     private FaceColor _faceFront = FaceColor.Blue;
     private bool _isMoveAnimationPlaying;
+    private Direction? _bufferedMoveDirection;
 
     public void Awake()
     {
@@ -45,6 +46,20 @@ public class CubeGuyLogic : MonoBehaviour
 
     private void Move(Direction direction)
     {
+        if (_isMoveAnimationPlaying)
+        {
+            _bufferedMoveDirection = direction;
+
+            return;
+        }
+
+        _bufferedMoveDirection = null;
+
+        ActuallyMove(direction);
+    }
+
+    private void ActuallyMove(Direction direction)
+    {
         if (!MoveOnBoard(direction))
         {
             return;
@@ -59,6 +74,12 @@ public class CubeGuyLogic : MonoBehaviour
 
         transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
         RotateCube(direction);
+
+        if (_bufferedMoveDirection.HasValue)
+        {
+            ActuallyMove(_bufferedMoveDirection.Value);
+            _bufferedMoveDirection = null;
+        }
     }
 
     private IEnumerator CoolShitWhenMoving(Direction direction)
@@ -68,7 +89,7 @@ public class CubeGuyLogic : MonoBehaviour
         _isMoveAnimationPlaying = true;
 
         string animationName = $"CubeRoll{direction}"; // jam schuna
-        _animator.Play(animationName);
+        _animator.Play(animationName, 0, 0);
         yield return new WaitForSeconds(0.25f); // nothing works... just wait the time you know it is jesus christ
 
         _animator.StopPlayback();
