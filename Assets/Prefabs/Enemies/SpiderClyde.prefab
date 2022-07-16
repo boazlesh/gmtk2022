@@ -50,6 +50,7 @@ MonoBehaviour:
   _actionInstance: {fileID: 11400000, guid: 3c07cf767ed2cca498153d35bbb5061d, type: 2}
   _boardPosition: {x: 0, y: 0}
   _projectilePosition: {fileID: 0}
+  _audioClipDeath: {fileID: 8300000, guid: 120a790c41712934aaa4ee89d49c4f8a, type: 3}
 --- !u!114 &6678353872909479239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40a5eebc36b90c4aba4d5d0ff87a456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 10
+  _maxHealth: 8
   _healthDisplay: {fileID: 179610043385541669}
 --- !u!61 &8760454798979359202
 BoxCollider2D:

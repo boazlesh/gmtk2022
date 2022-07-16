@@ -11,6 +11,7 @@ namespace Assets
         [SerializeField] private ActionInstance _actionInstance;
         [SerializeField] public Vector2Int _boardPosition;
         [SerializeField] public Transform _projectilePosition;
+        [SerializeField] public AudioClip _audioClipDeath;
 
         private CubeGuyLogic _player;
         private Board _board;
@@ -21,6 +22,8 @@ namespace Assets
         {
             _board = FindObjectOfType<Board>();
             _player = FindObjectOfType<CubeGuyLogic>();
+
+            transform.GetComponent<HealthComponent>().OnDied += OnDied;
         }
 
         private void OnValidate()
@@ -154,6 +157,13 @@ namespace Assets
         private void OnCustomScreenExit()
         {
             _isTurnActive = true;
+        }
+
+        private void OnDied()
+        {
+            AudioClipOneShotPlayer.SpawnOneShot(_audioClipDeath);
+
+            Destroy(gameObject);
         }
     }
 }
