@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ namespace Assets
 
         [SerializeField] private float _customGaugeDurationSeconds = 10f;
         [SerializeField] private Slider _slider;
+        [SerializeField] private TextMeshProUGUI _label;
 
         public void RunCustomGauge()
         {
@@ -19,6 +21,7 @@ namespace Assets
 
         private IEnumerator RunCustomGaugeRoutine(float timeSeconds)
         {
+            _label.enabled = false;
             float elapsedTime = 0f;
 
             while (elapsedTime < timeSeconds)
@@ -28,6 +31,7 @@ namespace Assets
                 yield return null;
             }
 
+            _label.enabled = enabled;
             OnCustomGaugeComplete?.Invoke();
         }
     }
