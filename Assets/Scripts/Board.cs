@@ -4,26 +4,32 @@ public class Board : MonoBehaviour
 {
     private readonly Vector2 _toWorldMultiplier = new Vector2(2.0f, -1.5f);
 
-    private readonly GameObject[,] _matrix = new GameObject[3, 3];
-    private readonly Vector2Int _matrixSize;
-
-    public Board()
-    {
-        _matrixSize = new Vector2Int(_matrix.GetLength(0) - 1, _matrix.GetLength(1) - 1);
-    }
+    private readonly Vector2Int _playerMatrixStart = Vector2Int.zero;
+    private readonly Vector2Int _playerMatrixEnd = new Vector2Int(2, 2);
+    private readonly Vector2Int _enemyMatrixStart = new Vector2Int(3, 0);
+    private readonly Vector2Int _enemyMatrixEnd = new Vector2Int(5, 5);
 
     public Vector2 BoardPositionToWorldPosition(Vector2Int boardPosition)
     {
-        return boardPosition * _toWorldMultiplier;
+        Vector2 position = boardPosition * _toWorldMultiplier;
+
+        return position;
     }
 
-    public Vector2Int GetMoveAttemptPosition(Vector2Int startPosition, Direction direction)
+    public Vector2Int GetMoveAttemptPosition(Vector2Int startPosition, Direction direction, bool player)
     {
         Vector2Int movement = GetMovement(direction);
 
         Vector2Int resultPosition = startPosition + movement;
 
-        resultPosition.Clamp(Vector2Int.zero, _matrixSize);
+        if (player)
+        {
+            resultPosition.Clamp(_playerMatrixStart, _playerMatrixEnd);
+        }
+        else
+        {
+            resultPosition.Clamp(_enemyMatrixStart, _enemyMatrixEnd);
+        }
 
         return resultPosition;
     }

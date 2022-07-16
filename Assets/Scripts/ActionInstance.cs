@@ -1,9 +1,12 @@
-﻿namespace Assets.Scripts
-{
-    public class ActionInstance
-    {
-        public ActionModel Action { get; set; }
+﻿using UnityEngine;
 
-        public int Potency { get; set; }
+namespace Assets.Scripts
+{
+    [CreateAssetMenu(menuName = "ScriptableObjects/ActionInstance")]
+    public class ActionInstance : ScriptableObject
+    {
+        [SerializeField] public ActionModel Action;
+
+        [SerializeField] public int Potency;
     }
 }
