@@ -5,8 +5,6 @@ namespace Assets.Scripts
 {
     public class Projectile : MonoBehaviour
     {
-        private const float _waitBetweenMove = 0.1f;
-
         private bool _isEnemy;
         private int _potency;
         private float _speed;
@@ -19,14 +17,33 @@ namespace Assets.Scripts
             _speed = speed;
             _potency = potency;
 
-            _isAlive = true;
+            transform.localScale = new Vector3(_speed >= 0 ? -1 : 1, 1, 1);
 
-            StartCoroutine(MoveRoutine());
+            _isAlive = true;
+        }
+
+        private void FixedUpdate()
+        {
+            if (!_isAlive)
+            {
+                return;
+            }
+
+            float newX = transform.position.x + Time.fixedDeltaTime * _speed;
+            transform.position = new Vector3(newX, transform.position.y, transform.position.z);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
             Debug.Log("Collided!");
+
+            // TODO: collision with Killzone
+
+            if (collision.gameObject.GetComponent<Projectile>() != null)
+            {
+                return;
+            }
+
 
             if (_isEnemy)
             {
@@ -45,25 +62,13 @@ namespace Assets.Scripts
 
                 if (enemy != null)
                 {
-                    //enemy.Damage(_potency);
+                    enemy.GetComponent<HealthComponent>().TakeDamage(_potency);
 
                     _isAlive = false;
                 }
             }
 
             Destroy(gameObject);
-        }
-
-        private IEnumerator MoveRoutine()
-        {
-            while (_isAlive)
-            {
-                yield return new WaitForSeconds(_waitBetweenMove);
-
-                float newX = transform.position.x + Time.deltaTime * _speed * 100;
-
-                transform.position = new Vector3(newX, transform.position.y, transform.position.z);
-            }
         }
     }
 }

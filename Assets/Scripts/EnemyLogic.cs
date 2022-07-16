@@ -138,7 +138,7 @@ namespace Assets
             }
 
             Projectile projectile = Instantiate(_actionInstance.Action._projectilePrefab, parent: null);
-            projectile.Initialize(_projectilePosition.transform.position, speed: -5f, potency: _actionInstance.Potency, isEnemy: true);
+            projectile.Initialize(_projectilePosition.transform.position, speed: -8f, potency: _actionInstance.Potency, isEnemy: true);
         }
 
         private void SyncWorldPositionToBoardPosition()
