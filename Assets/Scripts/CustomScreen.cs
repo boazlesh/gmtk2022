@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -17,6 +19,11 @@ namespace Assets.Scripts
         private void Awake()
         {
             SetActions();
+        }
+
+        public IEnumerator SelectActionsRoutine()
+        {
+            yield return new List<ActionInstance> { new ActionInstance { Action = _actionLibrary[0], Potency = 1 } };
         }
 
         private void SetActions()

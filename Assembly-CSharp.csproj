@@ -57,21 +57,23 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\ActionBlock.cs" />
-    <Compile Include="Assets\Scripts\Input.cs" />
+    <Compile Include="Assets\Scripts\ActionInstance.cs" />
     <Compile Include="Assets\Scripts\ActionType.cs" />
     <Compile Include="Assets\Scripts\ActionModel.cs" />
     <Compile Include="Assets\Scripts\DieFace.cs" />
     <Compile Include="Assets\Scripts\Die.cs" />
+    <Compile Include="Assets\Scripts\Utils\CoroutineExtensions.cs" />
+    <Compile Include="Assets\Scripts\Utils\CoroutineResult.cs" />
     <Compile Include="Assets\Scripts\Utils\GenericDictionary.cs" />
     <Compile Include="Assets\Scripts\DieFaceMapping.cs" />
-    <Compile Include="Assets\Scripts\FaceColor.cs" />
     <Compile Include="Assets\Scripts\CubeGuyLogic.cs" />
-    <Compile Include="Assets\Scripts\Enums\FaceColor.cs" />
-    <Compile Include="Assets\Scripts\Enums\Direction.cs" />
     <Compile Include="Assets\Scripts\DieRollWindow.cs" />
     <Compile Include="Assets\Scripts\CustomScreen.cs" />
+    <Compile Include="Assets\Scripts\Enums\FaceColor.cs" />
+    <Compile Include="Assets\Scripts\Enums\Direction.cs" />
+    <Compile Include="Assets\Scripts\Input.cs" />
+    <Compile Include="Assets\Scripts\Board.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -754,7 +756,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Scripts\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
