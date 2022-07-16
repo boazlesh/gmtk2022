@@ -56,6 +56,11 @@ public class CubeGuyLogic : MonoBehaviour
         PauseMenu.OnGameResumed += () => _input.Enable();
     }
 
+    private void Start()
+    {
+        EnterCustomScreenIfPossible();
+    }
+
     private void OnEnable()
     {
         _input.Enable();
