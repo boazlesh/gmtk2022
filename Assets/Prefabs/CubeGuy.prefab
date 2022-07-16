@@ -300,6 +300,7 @@ MonoBehaviour:
   _faceColorMapping: {fileID: 11400000, guid: 8177cfc7a43a7d8468d215f7bb71e530, type: 2}
   _customScreen: {fileID: 0}
   _playerHud: {fileID: 0}
+  _projectilePosition: {fileID: 6524509414299750545}
   _boardPosition: {x: 0, y: 0}
 --- !u!82 &5158299263869599540
 AudioSource:
@@ -422,7 +423,6 @@ GameObject:
   - component: {fileID: 3463734516801210291}
   - component: {fileID: 361478622763371859}
   - component: {fileID: 6587501807903563460}
-  - component: {fileID: 3913699076858838592}
   m_Layer: 0
   m_Name: SpritesHolder
   m_TagString: Untagged
@@ -444,6 +444,7 @@ Transform:
   - {fileID: 3463734516168273286}
   - {fileID: 3463734515863175782}
   - {fileID: 3463734514826035830}
+  - {fileID: 6524509414299750545}
   m_Father: {fileID: 3463734516725345735}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -492,24 +493,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8850846, y: 0.9324027}
   m_EdgeRadius: 0
---- !u!50 &3913699076858838592
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!1 &9016044903980644427
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3463734516801210290}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6524509414299750545}
+  m_Layer: 0
+  m_Name: ProjectilePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6524509414299750545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9016044903980644427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3463734516801210291}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

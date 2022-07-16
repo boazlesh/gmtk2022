@@ -15,6 +15,7 @@ public class CubeGuyLogic : MonoBehaviour
     [SerializeField] private FaceColorMapping _faceColorMapping;
     [SerializeField] private CustomScreen _customScreen;
     [SerializeField] private PlayerHud _playerHud;
+    [SerializeField] public Transform _projectilePosition;
 
     private AudioSource _audioSource;
     private Animator _animator;
@@ -210,14 +211,27 @@ public class CubeGuyLogic : MonoBehaviour
 
     private void UseTopAbility()
     {
+        StartCoroutine(UseTopAbilityCoroutine());
+    }
+
+    private IEnumerator UseTopAbilityCoroutine()
+    {
         if (!_actionInstances.ContainsKey(_faceTop))
         {
-            return;
+            yield break;
         }
 
         var abilityInstance = _actionInstances[_faceTop];
 
         _actionInstances.Remove(_faceTop);
         ColorFaces();
+
+        if (abilityInstance.Action._projectilePrefab == null)
+        {
+            yield break;
+        }
+
+        Projectile projectile = Instantiate(abilityInstance.Action._projectilePrefab, parent: null);
+        projectile.Initialize(_projectilePosition.transform.position, speed: 8f, potency: abilityInstance.Potency, isEnemy: false);
     }
 }
