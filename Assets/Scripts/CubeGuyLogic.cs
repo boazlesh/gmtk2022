@@ -1,8 +1,10 @@
+using Assets;
 using Assets.Scripts;
 using Assets.Scripts.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CubeGuyLogic : MonoBehaviour
@@ -56,9 +58,37 @@ public class CubeGuyLogic : MonoBehaviour
         PauseMenu.OnGameResumed += () => _input.Enable();
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        _input.Disable();
+
+        yield return FadeEnemiesInRoutine();
+
         EnterCustomScreenIfPossible();
+
+        foreach (EnemyLogic enemy in FindObjectsOfType<EnemyLogic>())
+        {
+            enemy.Act();
+        }
+
+        _input.Enable();
+    }
+
+    private IEnumerator FadeEnemiesInRoutine()
+    {
+        var enemies = FindObjectsOfType<EnemyLogic>().OrderBy(e => e._boardPosition.y);
+
+        foreach (EnemyLogic enemy in enemies)
+        {
+            var color = enemy._spriteRenderer.material.color;
+
+            enemy._spriteRenderer.material.color = new Color(color.r, color.g, color.b, a: 0);
+        }
+
+        foreach (EnemyLogic enemy in enemies)
+        {
+            yield return FadeToRoutine(enemy._spriteRenderer, 1, 1f);
+        }
     }
 
     private void OnEnable()
@@ -248,5 +278,18 @@ public class CubeGuyLogic : MonoBehaviour
     private void OnCustomGaugeComplete()
     {
         _isCustomScreenAvailable = true;
+    }
+
+    private IEnumerator FadeToRoutine(SpriteRenderer spriteRenderer, float targetAlpha, float timeSeconds)
+    {
+        Color color = spriteRenderer.material.color;
+
+        float original = color.a;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / timeSeconds)
+        {
+            Color newColor = new Color(color.r, color.g, color.b, Mathf.Lerp(original, targetAlpha, t));
+            spriteRenderer.material.color = newColor;
+            yield return null;
+        }
     }
 }

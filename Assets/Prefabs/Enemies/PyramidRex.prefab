@@ -53,6 +53,7 @@ MonoBehaviour:
   _projectilePosition: {fileID: 1068756140343405849}
   _animator: {fileID: 5822627182197899966}
   _audioClipDeath: {fileID: 8300000, guid: 120a790c41712934aaa4ee89d49c4f8a, type: 3}
+  _spriteRenderer: {fileID: 8942878283430200323}
 --- !u!114 &5669301322742832030
 MonoBehaviour:
   m_ObjectHideFlags: 0

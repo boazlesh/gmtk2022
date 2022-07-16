@@ -14,6 +14,12 @@ namespace Assets
         [SerializeField] private Slider _slider;
         [SerializeField] private TextMeshProUGUI _label;
 
+        private void Awake()
+        {
+            _slider.value = 0;
+            _label.enabled = false;
+        }
+
         public void RunCustomGauge()
         {
             StartCoroutine(RunCustomGaugeRoutine(_customGaugeDurationSeconds));
