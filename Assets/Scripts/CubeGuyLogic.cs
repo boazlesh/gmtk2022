@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class CubeGuyLogic : MonoBehaviour
@@ -10,15 +11,19 @@ public class CubeGuyLogic : MonoBehaviour
     [SerializeField] private AudioClip _audioClipMove;
 
     private AudioSource _audioSource;
+    private Animator _animator;
+
     private Vector2Int _boardPosition;
     private Input _input;
     private FaceColor _faceTop = FaceColor.Red;
     private FaceColor _faceSide = FaceColor.Green;
     private FaceColor _faceFront = FaceColor.Blue;
+    private bool _isMoveAnimationPlaying;
 
     public void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        _animator = transform.GetComponentInChildren<Animator>();
 
         ColorFaces();
 
@@ -45,9 +50,34 @@ public class CubeGuyLogic : MonoBehaviour
             return;
         }
 
+        StartCoroutine(MoveCoroutine(direction));
+    }
+
+    private IEnumerator MoveCoroutine(Direction direction)
+    {
+        yield return CoolShitWhenMoving(direction);
+
+        transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
+        RotateCube(direction);
+    }
+
+    private IEnumerator CoolShitWhenMoving(Direction direction)
+    {
         _audioSource.PlayOneShot(_audioClipMove);
 
-        RotateCube(direction);
+        _isMoveAnimationPlaying = true;
+
+        string animationName = $"CubeRoll{direction}"; // jam schuna
+        _animator.Play(animationName);
+        yield return new WaitForSeconds(0.25f); // nothing works... just wait the time you know it is jesus christ
+
+        _animator.StopPlayback();
+        yield return null;
+
+        _animator.transform.localPosition = Vector3.zero;
+        _animator.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+        _isMoveAnimationPlaying = false;
     }
 
     private bool MoveOnBoard(Direction direction)
@@ -60,7 +90,6 @@ public class CubeGuyLogic : MonoBehaviour
         }
 
         _boardPosition = movePosition;
-        transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
 
         return true;
     }
