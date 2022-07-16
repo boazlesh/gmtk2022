@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\FaceColorMapping.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\EnemyLogic.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

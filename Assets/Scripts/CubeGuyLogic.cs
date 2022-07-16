@@ -1,6 +1,5 @@
 using Assets.Scripts;
 using Assets.Scripts.Utils;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +17,7 @@ public class CubeGuyLogic : MonoBehaviour
     private AudioSource _audioSource;
     private Animator _animator;
 
-    private Vector2Int _boardPosition;
+    public Vector2Int _boardPosition;
     private Input _input;
     private FaceColor _faceTop = FaceColor.Red;
     private FaceColor _faceSide = FaceColor.Green;
