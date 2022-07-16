@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,22 +8,18 @@ public class ActionBlock : MonoBehaviour
     [SerializeField] private Color _color;
     [SerializeField] private Image _actionImage;
     [SerializeField] private Image _outlineImage;
+    [SerializeField] private ActionType _actionType;
 
     private void OnValidate()
     {
-        _actionImage.sprite = _actionSprite;
         _outlineImage.color = _color;
+
+        SetAction(new ActionModel { Sprite = _actionSprite });
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetAction(ActionModel actionModel)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _actionImage.sprite = actionModel.Sprite;
+        _actionType = actionModel.ActionType;
     }
 }
