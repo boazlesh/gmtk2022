@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\DieFaceMapping.cs" />
     <Compile Include="Assets\Scripts\FaceColor.cs" />
     <Compile Include="Assets\Scripts\CubeGuyLogic.cs" />
+    <Compile Include="Assets\DieRollWindow.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
