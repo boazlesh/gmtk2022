@@ -13,7 +13,8 @@ namespace Assets
 
         private CubeGuyLogic _player;
         private Board _board;
-        private bool _isActive = true;
+        private bool _isAlive = true;
+        private bool _isTurnActive = true;
 
         private void Awake()
         {
@@ -30,15 +31,23 @@ namespace Assets
         private void Start()
         {
             _board.Place(_boardPosition, gameObject);
+            _player.OnCustomScreenEnter += OnCustomScreenEnter;
+            _player.OnCustomScreenExit += OnCustomScreenExit;
 
             StartCoroutine(ActRoutine());
         }
 
         private IEnumerator ActRoutine()
         {
-            while (_isActive)
+            while (_isAlive)
             {
+                yield return new WaitUntil(() => _isTurnActive);
                 yield return new WaitForSeconds(_actionCooldownSeconds);
+                
+                if (!_isTurnActive)
+                {
+                    continue;
+                }
 
                 Direction? movementDirection = ChooseMovementDirection();
 
@@ -127,6 +136,16 @@ namespace Assets
         private void SyncWorldPositionToBoardPosition()
         {
             transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
+        }
+
+        private void OnCustomScreenEnter()
+        {
+            _isTurnActive = false;
+        }
+
+        private void OnCustomScreenExit()
+        {
+            _isTurnActive = true;
         }
     }
 }
