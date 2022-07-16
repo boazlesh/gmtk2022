@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 661187108823288402}
   - component: {fileID: 661187108823288400}
   m_Layer: 0
-  m_Name: SpiderClyde
+  m_Name: DiamondRhomby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661187108823288403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: -1.5, z: -1.5}
+  m_LocalPosition: {x: 8, y: -1.5, z: -1.5}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1398478070034920897}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actionCooldownSeconds: 1
   _actionInstance: {fileID: 11400000, guid: 3c07cf767ed2cca498153d35bbb5061d, type: 2}
-  _boardPosition: {x: 2, y: 1}
+  _boardPosition: {x: 4, y: 1}
 --- !u!1 &6591598362041512084
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 07af57c253da39e4d809b18c67a46071, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea75f3ca5540d61468ab65bcf0a0a289, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
