@@ -9,18 +9,20 @@ namespace Assets
         [SerializeField] private float _actionCooldownSeconds = 1f;
         [SerializeField] private ActionInstance _actionInstance;
         [SerializeField] public Vector2Int _boardPosition;
-        [SerializeField] private Board _board;
 
         private CubeGuyLogic _player;
+        private Board _board;
         private bool _isActive = true;
 
         private void Awake()
         {
+            _board = FindObjectOfType<Board>();
             _player = FindObjectOfType<CubeGuyLogic>();
         }
 
         private void OnValidate()
         {
+            _board = FindObjectOfType<Board>();
             SyncWorldPositionToBoardPosition();
         }
 
