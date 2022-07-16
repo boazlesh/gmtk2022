@@ -8,11 +8,11 @@ namespace Assets.Scripts
         private const float _waitBetweenMove = 0.1f;
 
         private bool _isEnemy;
-        private float _potency;
+        private int _potency;
         private float _speed;
         private bool _isAlive;
 
-        public void Initialize(Vector3 worldPosition, float speed, float potency, bool isEnemy)
+        public void Initialize(Vector3 worldPosition, float speed, int potency, bool isEnemy)
         {
             _isEnemy = isEnemy;
             transform.position = worldPosition;
@@ -30,18 +30,18 @@ namespace Assets.Scripts
 
             if (_isEnemy)
             {
-                CubeGuyLogic player = collision.gameObject.GetComponent<CubeGuyLogic>();
+                CubeGuyLogic player = collision.transform.GetComponentInParent<CubeGuyLogic>();
 
                 if (player != null)
                 {
-                    //player.Damage(_potency);
+                    player.GetComponent<HealthComponent>().TakeDamage(_potency);
 
                     _isAlive = false;
                 }
             }
             else
             {
-                EnemyLogic enemy = collision.gameObject.GetComponent<EnemyLogic>();
+                EnemyLogic enemy = collision.gameObject.GetComponentInParent<EnemyLogic>();
 
                 if (enemy != null)
                 {
