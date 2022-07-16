@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.Utils;
 using System.Collections;
 using UnityEngine;
 
@@ -28,6 +29,8 @@ namespace Assets
 
         private void Start()
         {
+            _board.Place(_boardPosition, gameObject);
+
             StartCoroutine(ActRoutine());
         }
 
@@ -41,7 +44,14 @@ namespace Assets
 
                 if (movementDirection != null)
                 {
-                    yield return PerformMovementRoutine(movementDirection.Value);
+                    CoroutineResult<MovementResult> movementResult = new CoroutineResult<MovementResult>();
+                    yield return PerformMovementRoutine(movementDirection.Value).GetResult(movementResult);
+
+                    if (movementResult.Value.DidMove)
+                    {
+                        // If moved, don't also try to perform an action
+                        yield break;
+                    }
                 }
 
                 yield return PerformActionRoutine();
@@ -80,18 +90,18 @@ namespace Assets
 
         private IEnumerator PerformMovementRoutine(Direction direction)
         {
-            Vector2Int movePosition = _board.GetMoveAttemptPosition(_boardPosition, direction, player: false);
+            Vector2Int movePosition = _board.AttemptToMove(_boardPosition, direction, player: false);
 
             if (_boardPosition == movePosition)
             {
-                yield return false;
+                yield return new MovementResult { DidMove = false };
                 yield break;
             }
 
             _boardPosition = movePosition;
             SyncWorldPositionToBoardPosition();
 
-            yield return true;
+            yield return new MovementResult { DidMove = true };
             yield break;
         }
 
