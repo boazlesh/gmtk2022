@@ -16,9 +16,11 @@ public class Board : MonoBehaviour
         _matrix[startingPosition.x, startingPosition.y] = gameObject;
     }
 
-    public Vector2 BoardPositionToWorldPosition(Vector2Int boardPosition)
+    public Vector3 BoardPositionToWorldPosition(Vector2Int boardPosition)
     {
-        Vector2 position = boardPosition * _toWorldMultiplier;
+        Vector3 position = boardPosition * _toWorldMultiplier;
+
+        position.z = position.y;
 
         return position;
     }
