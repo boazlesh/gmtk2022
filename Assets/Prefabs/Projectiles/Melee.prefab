@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69a2fbb0a259af4c800968117d4a71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 6
   _ttl: 0.15
   _canKillOtherProjectiles: 1
   _audioClipSpawn: {fileID: 8300000, guid: 22e113773f6cf264ba64bfe21e1cc799, type: 3}
