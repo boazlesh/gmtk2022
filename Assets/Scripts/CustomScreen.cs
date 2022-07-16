@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -20,6 +21,7 @@ namespace Assets.Scripts
         [SerializeField] private DieRollWindow _greenDieRollWindow;
 
         [SerializeField] private TextMeshProUGUI _diceLeftText;
+        [SerializeField] private Button _submitButton;
 
         private int _diceLeft;
         private bool _isSubmitted = false;
@@ -89,7 +91,7 @@ namespace Assets.Scripts
 
             bool hasDiceLeft = _diceLeft > 0;
 
-            SetRollWindowsInteractable(hasDiceLeft);
+            SetInteractable(hasDiceLeft);
         }
 
         private IEnumerator RollDiceRoutine()
@@ -101,11 +103,13 @@ namespace Assets.Scripts
 
         private void OnDieRoll()
         {
-            SetRollWindowsInteractable(false);
+            SetInteractable(false);
         }
 
-        private void SetRollWindowsInteractable(bool interactable)
+        private void SetInteractable(bool interactable)
         {
+            _submitButton.interactable = interactable;
+
             if (!_redDieRollWindow.IsBust())
             {
                 _redDieRollWindow.SetInteractable(interactable);
