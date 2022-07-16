@@ -13,6 +13,8 @@ namespace Assets.Scripts
         [SerializeField] private Image _dieImage;
         [SerializeField] private DieFaceMapping _dieFaceMapping;
         [SerializeField] private FaceColorMapping _faceColorMapping;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _audioClip;
 
         private void OnValidate()
         {
@@ -22,6 +24,10 @@ namespace Assets.Scripts
 
         public IEnumerator RollRandomFacesRoutine(float timeSeconds)
         {
+            timeSeconds = Mathf.Min(timeSeconds, _audioClip.length);
+
+            _audioSource.PlayOneShot(_audioClip);
+
             while (timeSeconds > 0)
             {
                 yield return new WaitForSeconds(_secondsBetweenChecks);

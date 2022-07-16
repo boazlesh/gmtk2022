@@ -104,9 +104,20 @@ namespace Assets.Scripts
 
         private void SetRollWindowsInteractable(bool interactable)
         {
-            _redDieRollWindow.SetInteractable(interactable);
-            _blueDieRollWindow.SetInteractable(interactable);
-            _greenDieRollWindow.SetInteractable(interactable);
+            if (!_redDieRollWindow.IsBust())
+            {
+                _redDieRollWindow.SetInteractable(interactable);
+            }
+
+            if (!_blueDieRollWindow.IsBust())
+            {
+                _blueDieRollWindow.SetInteractable(interactable);
+            }
+
+            if (!_greenDieRollWindow.IsBust())
+            {
+                _greenDieRollWindow.SetInteractable(interactable);
+            }
         }
 
         private void OnDieRolled()
