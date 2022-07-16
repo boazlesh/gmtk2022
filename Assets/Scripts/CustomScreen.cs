@@ -7,6 +7,8 @@ namespace Assets.Scripts
 {
     public class CustomScreen : MonoBehaviour
     {
+        private const float rollTimeSeconds = 1f;
+
         [SerializeField] private ActionModel[] _actionLibrary;
 
         [SerializeField] private ActionBlock _redActionBlock;
@@ -37,7 +39,7 @@ namespace Assets.Scripts
 
             SetDiceLeft(5);
             SetActions();
-            RollDice();
+            yield return RollDiceRoutine();
 
             yield return new WaitUntil(() => _isSubmitted);
 
@@ -86,11 +88,11 @@ namespace Assets.Scripts
             _greenDieRollWindow.SetInteractable(hasDiceLeft);
         }
 
-        private void RollDice()
+        private IEnumerator RollDiceRoutine()
         {
-            _redDieRollWindow.Roll();
-            _blueDieRollWindow.Roll();
-            _greenDieRollWindow.Roll();
+            yield return _redDieRollWindow.RollRoutine(rollTimeSeconds);
+            yield return _blueDieRollWindow.RollRoutine(rollTimeSeconds);
+            yield return _greenDieRollWindow.RollRoutine(rollTimeSeconds);
         }
 
         private void OnDieRoll()

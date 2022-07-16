@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts;
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,16 +44,20 @@ namespace Assets
             }
         }
 
-        public void Roll()
+        public void Roll(float rollTimeSeconds) => StartCoroutine(RollRoutine(rollTimeSeconds));
+
+        public IEnumerator RollRoutine(float rollTimeSeconds)
         {
-            AddDie(DieFaceHelper.Roll());
+            yield return AddDieRoutine(DieFaceHelper.Roll(), rollTimeSeconds);
 
             OnRoll?.Invoke();
         }
 
-        public void AddDie(DieFace dieFace)
+        public IEnumerator AddDieRoutine(DieFace dieFace, float rollTimeSeconds)
         {
             Die die = Instantiate(_diePrefab, _content);
+
+            yield return die.RollRandomFacesRoutine(rollTimeSeconds);
 
             die.SetColor(_faceColor);
             die.SetFace(dieFace);
@@ -64,7 +69,7 @@ namespace Assets
                 SetInteractable(false);
                 _sumLabel.text = "BUST!";
 
-                return;
+                yield break;
             }
 
             _sumLabel.text = _sum.ToString();
@@ -77,9 +82,9 @@ namespace Assets
         public bool SetInteractable(bool interactable) => _button.interactable = interactable;
 
         [ContextMenu("Add Die")]
-        public void AddDieDebug()
+        public IEnumerator AddDieDebug()
         {
-            AddDie(DieFace.Five);
+            yield return AddDieRoutine(DieFace.Five, rollTimeSeconds: 1f);
         }
     }
 }
