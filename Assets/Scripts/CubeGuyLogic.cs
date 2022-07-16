@@ -7,7 +7,9 @@ public class CubeGuyLogic : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteTop;
     [SerializeField] private SpriteRenderer _spriteSide;
     [SerializeField] private SpriteRenderer _spriteFront;
+    [SerializeField] private AudioClip _audioClipMove;
 
+    private AudioSource _audioSource;
     private Vector2Int _boardPosition;
     private Input _input;
     private FaceColor _faceTop = FaceColor.Red;
@@ -16,6 +18,8 @@ public class CubeGuyLogic : MonoBehaviour
 
     public void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
+
         ColorFaces();
 
         _input = new Input();
@@ -40,6 +44,8 @@ public class CubeGuyLogic : MonoBehaviour
         {
             return;
         }
+
+        _audioSource.PlayOneShot(_audioClipMove);
 
         RotateCube(direction);
     }
