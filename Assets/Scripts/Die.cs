@@ -9,6 +9,7 @@ namespace Assets.Scripts
         [SerializeField] private FaceColor _faceColor;
         [SerializeField] private Image _dieImage;
         [SerializeField] private DieFaceMapping _dieFaceMapping;
+        [SerializeField] private FaceColorMapping _faceColorMapping;
 
         private void OnValidate()
         {
@@ -25,7 +26,7 @@ namespace Assets.Scripts
         public void SetColor(FaceColor faceColor)
         {
             _faceColor = faceColor;
-            _dieImage.color = FaceColorHelper.GetColorFromFaceColor(faceColor);
+            _dieImage.color = _faceColorMapping.GetColorFromFaceColor(faceColor);
         }
     }
 }

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.10196079, g: 0.10196079, b: 0.6, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -92,3 +92,4 @@ MonoBehaviour:
   _faceColor: 1
   _dieImage: {fileID: 2980212651925726336}
   _dieFaceMapping: {fileID: 11400000, guid: c9d3a9d37da548a47b8716919457d21d, type: 2}
+  _faceColorMapping: {fileID: 11400000, guid: 8177cfc7a43a7d8468d215f7bb71e530, type: 2}

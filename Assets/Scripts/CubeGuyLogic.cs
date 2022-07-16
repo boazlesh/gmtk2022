@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class CubeGuyLogic : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteSide;
     [SerializeField] private SpriteRenderer _spriteFront;
     [SerializeField] private AudioClip _audioClipMove;
+    [SerializeField] private FaceColorMapping _faceColorMapping;
 
     private AudioSource _audioSource;
     private Vector2Int _boardPosition;
@@ -33,9 +35,9 @@ public class CubeGuyLogic : MonoBehaviour
 
     private void ColorFaces()
     {
-        _spriteTop.color = FaceColorHelper.GetColorFromFaceColor(_faceTop);
-        _spriteFront.color = FaceColorHelper.GetColorFromFaceColor(_faceFront);
-        _spriteSide.color = FaceColorHelper.GetColorFromFaceColor(_faceSide);
+        _spriteTop.color = _faceColorMapping.GetColorFromFaceColor(_faceTop);
+        _spriteFront.color = _faceColorMapping.GetColorFromFaceColor(_faceFront);
+        _spriteSide.color = _faceColorMapping.GetColorFromFaceColor(_faceSide);
     }
 
     private void Move(Direction direction)
