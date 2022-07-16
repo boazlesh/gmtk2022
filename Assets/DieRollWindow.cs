@@ -10,8 +10,7 @@ namespace Assets
         [SerializeField] private Die _diePrefab;
         [SerializeField] private Transform _content;
         [SerializeField] private TextMeshProUGUI _sumLabel;
-
-        private int _sum = 0;
+        [SerializeField] private int _sum = 0;
 
         private void Awake()
         {

@@ -63,6 +63,7 @@ MonoBehaviour:
   _diePrefab: {fileID: 7118407361714574155, guid: 9d2bf2e68faffb644a831df9308b1be4, type: 3}
   _content: {fileID: 3094307253290507990}
   _sumLabel: {fileID: 3233301700392644672}
+  _sum: 5
 --- !u!1 &3094307253290507991
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,6 +144,7 @@ MonoBehaviour:
   _diePrefab: {fileID: 7118407361714574155, guid: 9d2bf2e68faffb644a831df9308b1be4, type: 3}
   _content: {fileID: 3094307253290507990}
   _sumLabel: {fileID: 0}
+  _sum: 0
 --- !u!1 &3383443633444085393
 GameObject:
   m_ObjectHideFlags: 0
