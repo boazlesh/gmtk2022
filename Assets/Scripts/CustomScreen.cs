@@ -45,6 +45,9 @@ namespace Assets.Scripts
 
             SetDiceLeft(5);
             SetActions();
+            SetSubmitInteractable(false);
+            SetDiceRollsInteractable(false);
+
             yield return RollDiceRoutine();
 
             yield return new WaitUntil(() => _isSubmitted);
@@ -91,7 +94,7 @@ namespace Assets.Scripts
 
             bool hasDiceLeft = _diceLeft > 0;
 
-            SetInteractable(hasDiceLeft);
+            SetDiceRollsInteractable(hasDiceLeft);
         }
 
         private IEnumerator RollDiceRoutine()
@@ -103,13 +106,17 @@ namespace Assets.Scripts
 
         private void OnDieRoll()
         {
-            SetInteractable(false);
+            SetSubmitInteractable(false);
+            SetDiceRollsInteractable(false);
         }
 
-        private void SetInteractable(bool interactable)
+        private void SetSubmitInteractable(bool interactable)
         {
             _submitButton.interactable = interactable;
+        }
 
+        private void SetDiceRollsInteractable(bool interactable)
+        {
             if (!_redDieRollWindow.IsBust())
             {
                 _redDieRollWindow.SetInteractable(interactable);
@@ -128,7 +135,8 @@ namespace Assets.Scripts
 
         private void OnDieRolled()
         {
-            // Set dice left already sets interaction
+            SetSubmitInteractable(true);
+
             SetDiceLeft(_diceLeft - 1);
         }
 
