@@ -393,7 +393,7 @@ PrefabInstance:
     - target: {fileID: 4068502819351120702, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 0}
     - target: {fileID: 8551036068446952166, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_Name
       value: GreenAction
@@ -616,7 +616,7 @@ PrefabInstance:
     - target: {fileID: 4068502819351120702, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 0}
     - target: {fileID: 8551036068446952166, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_Name
       value: BlueAction
@@ -1116,6 +1116,7 @@ MonoBehaviour:
   _redDieRollWindow: {fileID: 1029456501}
   _blueDieRollWindow: {fileID: 412706407}
   _greenDieRollWindow: {fileID: 1810354862}
+  _faceColorMapping: {fileID: 11400000, guid: 8177cfc7a43a7d8468d215f7bb71e530, type: 2}
 --- !u!114 &1422144956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1576,7 +1577,7 @@ PrefabInstance:
     - target: {fileID: 4068502819351120702, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 0}
     - target: {fileID: 4068502819351120702, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_Enabled
       value: 1

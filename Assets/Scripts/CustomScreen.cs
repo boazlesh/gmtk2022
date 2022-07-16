@@ -55,8 +55,13 @@ namespace Assets.Scripts
 
         private void SetActions()
         {
+            _redActionBlock.SetFaceColor(FaceColor.Red);
             _redActionBlock.SetAction(_actionLibrary[0]);
+
+            _blueActionBlock.SetFaceColor(FaceColor.Blue);
             _blueActionBlock.SetAction(_actionLibrary[1]);
+
+            _greenActionBlock.SetFaceColor(FaceColor.Green);
             _greenActionBlock.SetAction(_actionLibrary[2]);
         }
 
