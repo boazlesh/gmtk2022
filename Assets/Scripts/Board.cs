@@ -47,6 +47,7 @@ public class Board : MonoBehaviour
         if (startPosition != resultPosition)
         {
             _matrix[resultPosition.x, resultPosition.y] = _matrix[startPosition.x, startPosition.y];
+            _matrix[startPosition.x, startPosition.y] = null;
         }
 
         return resultPosition;

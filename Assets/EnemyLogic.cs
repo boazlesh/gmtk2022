@@ -50,7 +50,7 @@ namespace Assets
                     if (movementResult.Value.DidMove)
                     {
                         // If moved, don't also try to perform an action
-                        yield break;
+                        continue;
                     }
                 }
 
@@ -63,6 +63,20 @@ namespace Assets
             switch (_actionInstance.Action._actionType)
             {
                 case ActionType.Cannon:
+                    {
+                        if (_boardPosition.y > _player._boardPosition.y)
+                        {
+                            return Direction.Up;
+                        }
+                        else if (_boardPosition.y < _player._boardPosition.y)
+                        {
+                            return Direction.Down;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
                 case ActionType.Sword:
                     {
                         if (_boardPosition.y > _player._boardPosition.y)
@@ -107,7 +121,7 @@ namespace Assets
 
         private IEnumerator PerformActionRoutine()
         {
-            return null;
+            yield return null;
         }
 
         private void SyncWorldPositionToBoardPosition()
