@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,8 @@ namespace Assets
 {
     public class DieRollWindow : MonoBehaviour
     {
+        public event Action OnRoll;
+
         [SerializeField] private FaceColor _faceColor;
         [SerializeField] private Die _diePrefab;
         [SerializeField] private Transform _content;
@@ -43,6 +46,8 @@ namespace Assets
         public void Roll()
         {
             AddDie(DieFaceHelper.Roll());
+
+            OnRoll?.Invoke();
         }
 
         public void AddDie(DieFace dieFace)
@@ -56,7 +61,7 @@ namespace Assets
 
             if (IsBust())
             {
-                _button.interactable = false;
+                SetInteractable(false);
                 _sumLabel.text = "BUST!";
 
                 return;
@@ -68,6 +73,8 @@ namespace Assets
         public bool IsBust() => _sum > _bustThreshold;
 
         public int GetSum() => _sum;
+
+        public bool SetInteractable(bool interactable) => _button.interactable = interactable;
 
         [ContextMenu("Add Die")]
         public void AddDieDebug()

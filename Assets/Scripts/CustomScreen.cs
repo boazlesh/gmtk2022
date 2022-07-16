@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -16,10 +17,17 @@ namespace Assets.Scripts
         [SerializeField] private DieRollWindow _blueDieRollWindow;
         [SerializeField] private DieRollWindow _greenDieRollWindow;
 
+        [SerializeField] private TextMeshProUGUI _diceLeftText;
+
+        private int _diceLeft;
         private bool _isSubmitted = false;
 
         private void Start()
         {
+            _redDieRollWindow.OnRoll += OnDieRoll;
+            _blueDieRollWindow.OnRoll += OnDieRoll;
+            _greenDieRollWindow.OnRoll += OnDieRoll;
+
             StartCoroutine(SelectActionsRoutine());
         }
 
@@ -27,8 +35,8 @@ namespace Assets.Scripts
         {
             _isSubmitted = false;
 
+            SetDiceLeft(5);
             SetActions();
-
             RollDice();
 
             yield return new WaitUntil(() => _isSubmitted);
@@ -65,11 +73,29 @@ namespace Assets.Scripts
             _greenActionBlock.SetAction(_actionLibrary[2]);
         }
 
+        public void SetDiceLeft(int diceLeft)
+        {
+            _diceLeft = diceLeft;
+
+            _diceLeftText.text = $"Extra dice left: {_diceLeft}";
+
+            bool hasDiceLeft = _diceLeft > 0;
+
+            _redDieRollWindow.SetInteractable(hasDiceLeft);
+            _blueDieRollWindow.SetInteractable(hasDiceLeft);
+            _greenDieRollWindow.SetInteractable(hasDiceLeft);
+        }
+
         private void RollDice()
         {
             _redDieRollWindow.Roll();
             _blueDieRollWindow.Roll();
             _greenDieRollWindow.Roll();
+        }
+
+        private void OnDieRoll()
+        {
+            SetDiceLeft(_diceLeft - 1);
         }
 
         public void Submit()
