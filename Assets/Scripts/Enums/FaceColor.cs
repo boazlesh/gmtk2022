@@ -1,29 +1,31 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts
+public enum FaceColor
 {
-    public enum FaceColor
-    {
-        Red,
-        Green,
-        Blue
-    }
+    Red,
+    Green,
+    Blue
+}
 
-    public static class FaceColorHelper
+public static class FaceColorHelper
+{
+    private static readonly Color _red = new Color(0.6f, 0.1f, 0.1f);
+    private static readonly Color _green = new Color(0.1f, 0.6f, 0.1f);
+    private static readonly Color _blue = new Color(0.1f, 0.1f, 0.6f);
+    private static readonly Color _gray = new Color(0.1f, 0.1f, 0.1f);
+
+    public static Color GetColorFromFaceColor(FaceColor faceColor)
     {
-        public static Color GetColorFromFaceColor(FaceColor faceColor)
+        switch (faceColor)
         {
-            switch (faceColor)
-            {
-                case FaceColor.Red:
-                    return Color.red;
-                case FaceColor.Green:
-                    return Color.green;
-                case FaceColor.Blue:
-                    return Color.blue;
-                default:
-                    return Color.gray;
-            }
+            case FaceColor.Red:
+                return _red;
+            case FaceColor.Green:
+                return _green;
+            case FaceColor.Blue:
+                return _blue;
+            default:
+                return _gray;
         }
     }
 }

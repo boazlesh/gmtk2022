@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CubeGuyLogic : MonoBehaviour
@@ -9,9 +10,14 @@ public class CubeGuyLogic : MonoBehaviour
 
     private Vector2Int _boardPosition;
     private Input _input;
+    private FaceColor _faceTop = FaceColor.Red;
+    private FaceColor _faceFront = FaceColor.Blue;
+    private FaceColor _faceSide = FaceColor.Green;
 
     public void Awake()
     {
+        ColorFaces();
+
         _input = new Input();
         _input.Enable();
 
@@ -21,11 +27,29 @@ public class CubeGuyLogic : MonoBehaviour
         _input.BattleActionMap.MoveRight.performed += _ => Move(Direction.Right);
     }
 
+    private void ColorFaces()
+    {
+        _spriteTop.color = FaceColorHelper.GetColorFromFaceColor(_faceTop);
+        _spriteFront.color = FaceColorHelper.GetColorFromFaceColor(_faceFront);
+        _spriteSide.color = FaceColorHelper.GetColorFromFaceColor(_faceSide);
+    }
+
     private void Move(Direction direction)
+    {
+        MoveOnBoard(direction);
+        RotateCube(direction);
+    }
+
+    private void MoveOnBoard(Direction direction)
     {
         Vector2Int movePosition = _board.GetMoveAttemptPosition(_boardPosition, direction);
 
         _boardPosition = movePosition;
         transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
+    }
+
+    private void RotateCube(Direction direction)
+    {
+
     }
 }
