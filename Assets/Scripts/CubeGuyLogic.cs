@@ -39,7 +39,6 @@ public class CubeGuyLogic : MonoBehaviour
         ColorFaces();
 
         _input = new Input();
-        _input.Enable();
 
         _input.BattleActionMap.MoveUp.performed += _ => Move(Direction.Up);
         _input.BattleActionMap.MoveDown.performed += _ => Move(Direction.Down);
@@ -47,6 +46,26 @@ public class CubeGuyLogic : MonoBehaviour
         _input.BattleActionMap.MoveRight.performed += _ => Move(Direction.Right);
         _input.BattleActionMap.CustomScreen.performed += _ => EnterCustomScreenIfPossible();
         _input.BattleActionMap.UseTopAbility.performed += _ => UseTopAbility();
+
+        PauseMenu.OnGamePause += () => _input.Disable();
+        PauseMenu.OnGameResumed += () => _input.Enable();
+    }
+
+    private void OnEnable()
+    {
+        _input.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _input.Disable();
+    }
+
+    private void OnDestroy()
+    {
+        _input.Disable();
+
+        StopAllCoroutines();
     }
 
     private void ColorFaces()
@@ -100,11 +119,11 @@ public class CubeGuyLogic : MonoBehaviour
         transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
         RotateCube(direction);
 
-        if (_bufferedMoveDirection.HasValue)
-        {
-            ActuallyMove(_bufferedMoveDirection.Value);
-            _bufferedMoveDirection = null;
-        }
+        //if (_bufferedMoveDirection.HasValue)
+        //{
+        //    ActuallyMove(_bufferedMoveDirection.Value);
+        //    _bufferedMoveDirection = null;
+        //}
     }
 
     private IEnumerator CoolShitWhenMoving(Direction direction)

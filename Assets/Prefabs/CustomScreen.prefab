@@ -216,6 +216,7 @@ MonoBehaviour:
   _blueDieRollWindow: {fileID: 5743670354910268949}
   _greenDieRollWindow: {fileID: 5743670354412753893}
   _diceLeftText: {fileID: 7297148391445281383}
+  _submitButton: {fileID: 7297148390473593612}
 --- !u!114 &7297148390487737562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,6 +1012,10 @@ PrefabInstance:
       propertyPath: _faceColor
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3233301700392644672, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
+      propertyPath: m_fontSize
+      value: 50.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3248106614064492036, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1191,6 +1196,10 @@ PrefabInstance:
     - target: {fileID: 3094307252090236975, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
       propertyPath: _faceColor
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233301700392644672, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
+      propertyPath: m_fontSize
+      value: 50.8
       objectReference: {fileID: 0}
     - target: {fileID: 3248106614064492036, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1686,6 +1695,10 @@ PrefabInstance:
     - target: {fileID: 3094307252090236973, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
       propertyPath: m_Name
       value: RedDiceRollWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233301700392644672, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
+      propertyPath: m_fontSize
+      value: 50.8
       objectReference: {fileID: 0}
     - target: {fileID: 3248106614064492036, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
       propertyPath: m_AnchorMax.y

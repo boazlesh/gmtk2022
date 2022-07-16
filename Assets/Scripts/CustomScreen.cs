@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -20,6 +21,7 @@ namespace Assets.Scripts
         [SerializeField] private DieRollWindow _greenDieRollWindow;
 
         [SerializeField] private TextMeshProUGUI _diceLeftText;
+        [SerializeField] private Button _submitButton;
 
         private int _diceLeft;
         private bool _isSubmitted = false;
@@ -43,6 +45,9 @@ namespace Assets.Scripts
 
             SetDiceLeft(5);
             SetActions();
+            SetSubmitInteractable(false);
+            SetDiceRollsInteractable(false);
+
             yield return RollDiceRoutine();
 
             yield return new WaitUntil(() => _isSubmitted);
@@ -89,7 +94,7 @@ namespace Assets.Scripts
 
             bool hasDiceLeft = _diceLeft > 0;
 
-            SetRollWindowsInteractable(hasDiceLeft);
+            SetDiceRollsInteractable(hasDiceLeft);
         }
 
         private IEnumerator RollDiceRoutine()
@@ -101,10 +106,16 @@ namespace Assets.Scripts
 
         private void OnDieRoll()
         {
-            SetRollWindowsInteractable(false);
+            SetSubmitInteractable(false);
+            SetDiceRollsInteractable(false);
         }
 
-        private void SetRollWindowsInteractable(bool interactable)
+        private void SetSubmitInteractable(bool interactable)
+        {
+            _submitButton.interactable = interactable;
+        }
+
+        private void SetDiceRollsInteractable(bool interactable)
         {
             if (!_redDieRollWindow.IsBust())
             {
@@ -124,7 +135,8 @@ namespace Assets.Scripts
 
         private void OnDieRolled()
         {
-            // Set dice left already sets interaction
+            SetSubmitInteractable(true);
+
             SetDiceLeft(_diceLeft - 1);
         }
 
