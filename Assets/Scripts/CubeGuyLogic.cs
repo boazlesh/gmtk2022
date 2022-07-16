@@ -1,5 +1,7 @@
 using Assets.Scripts;
-using System;
+using Assets.Scripts.Utils;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CubeGuyLogic : MonoBehaviour
@@ -10,6 +12,7 @@ public class CubeGuyLogic : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteFront;
     [SerializeField] private AudioClip _audioClipMove;
     [SerializeField] private FaceColorMapping _faceColorMapping;
+    [SerializeField] private CustomScreen _customScreen;
 
     private AudioSource _audioSource;
     private Vector2Int _boardPosition;
@@ -17,6 +20,9 @@ public class CubeGuyLogic : MonoBehaviour
     private FaceColor _faceTop = FaceColor.Red;
     private FaceColor _faceSide = FaceColor.Green;
     private FaceColor _faceFront = FaceColor.Blue;
+    private bool _isCustomScreenAvailable = true;
+    private bool _isInCustomScreen = false;
+    private List<ActionInstance> _actionInstances = new List<ActionInstance>();
 
     public void Awake()
     {
@@ -31,6 +37,7 @@ public class CubeGuyLogic : MonoBehaviour
         _input.BattleActionMap.MoveDown.performed += _ => Move(Direction.Down);
         _input.BattleActionMap.MoveLeft.performed += _ => Move(Direction.Left);
         _input.BattleActionMap.MoveRight.performed += _ => Move(Direction.Right);
+        _input.BattleActionMap.CustomScreen.performed += _ => EnterCustomScreenIfPossible();
     }
 
     private void ColorFaces()
@@ -91,5 +98,33 @@ public class CubeGuyLogic : MonoBehaviour
         }
 
         ColorFaces();
+    }
+
+    private void EnterCustomScreenIfPossible()
+    {
+        if (!_isCustomScreenAvailable)
+        {
+            return;
+        }
+
+        StartCoroutine(EnterCustomScreenRoutine());
+    }
+
+    private IEnumerator EnterCustomScreenRoutine()
+    {
+        CoroutineResult<List<ActionInstance>> resultWrapper = new CoroutineResult<List<ActionInstance>>();
+
+        _isInCustomScreen = true;
+
+        _input.Disable();
+
+        yield return _customScreen.SelectActionsRoutine().GetResult(resultWrapper);
+
+        _isInCustomScreen = false;
+
+        _actionInstances = resultWrapper.Value;
+
+        _input.Enable();
+
     }
 }

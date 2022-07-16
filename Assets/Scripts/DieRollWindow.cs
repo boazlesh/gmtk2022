@@ -20,7 +20,7 @@ namespace Assets
         [SerializeField] private Button _button;
         [SerializeField] private int _bustThreshold;
 
-        private void Awake()
+        private void OnEnable()
         {
             foreach (Transform child in _content)
             {

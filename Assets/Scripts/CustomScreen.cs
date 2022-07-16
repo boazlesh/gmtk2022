@@ -33,12 +33,12 @@ namespace Assets.Scripts
             _redDieRollWindow.OnRolled += OnDieRolled;
             _blueDieRollWindow.OnRolled += OnDieRolled;
             _greenDieRollWindow.OnRolled += OnDieRolled;
-
-            StartCoroutine(SelectActionsRoutine());
         }
 
         public IEnumerator SelectActionsRoutine()
         {
+            gameObject.SetActive(true);
+
             _isSubmitted = false;
 
             SetDiceLeft(5);
@@ -65,6 +65,8 @@ namespace Assets.Scripts
             }
 
             yield return actionInstances;
+
+            gameObject.SetActive(false);
         }
 
         private void SetActions()

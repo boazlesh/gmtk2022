@@ -57,6 +57,14 @@ public class @Input : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CustomScreen"",
+                    ""type"": ""Button"",
+                    ""id"": ""d516abe5-d656-47b8-9305-098299dce854"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -202,6 +210,28 @@ public class @Input : IInputActionCollection, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4351b5e-1377-469a-b403-4295a8aebabf"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CustomScreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bdf2515-fff3-41f0-8381-cdecc0a054a9"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CustomScreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -215,6 +245,7 @@ public class @Input : IInputActionCollection, IDisposable
         m_BattleActionMap_MoveLeft = m_BattleActionMap.FindAction("MoveLeft", throwIfNotFound: true);
         m_BattleActionMap_MoveRight = m_BattleActionMap.FindAction("MoveRight", throwIfNotFound: true);
         m_BattleActionMap_Pause = m_BattleActionMap.FindAction("Pause", throwIfNotFound: true);
+        m_BattleActionMap_CustomScreen = m_BattleActionMap.FindAction("CustomScreen", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -269,6 +300,7 @@ public class @Input : IInputActionCollection, IDisposable
     private readonly InputAction m_BattleActionMap_MoveLeft;
     private readonly InputAction m_BattleActionMap_MoveRight;
     private readonly InputAction m_BattleActionMap_Pause;
+    private readonly InputAction m_BattleActionMap_CustomScreen;
     public struct BattleActionMapActions
     {
         private @Input m_Wrapper;
@@ -278,6 +310,7 @@ public class @Input : IInputActionCollection, IDisposable
         public InputAction @MoveLeft => m_Wrapper.m_BattleActionMap_MoveLeft;
         public InputAction @MoveRight => m_Wrapper.m_BattleActionMap_MoveRight;
         public InputAction @Pause => m_Wrapper.m_BattleActionMap_Pause;
+        public InputAction @CustomScreen => m_Wrapper.m_BattleActionMap_CustomScreen;
         public InputActionMap Get() { return m_Wrapper.m_BattleActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -302,6 +335,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnPause;
+                @CustomScreen.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnCustomScreen;
+                @CustomScreen.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnCustomScreen;
+                @CustomScreen.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnCustomScreen;
             }
             m_Wrapper.m_BattleActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -321,6 +357,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @CustomScreen.started += instance.OnCustomScreen;
+                @CustomScreen.performed += instance.OnCustomScreen;
+                @CustomScreen.canceled += instance.OnCustomScreen;
             }
         }
     }
@@ -332,5 +371,6 @@ public class @Input : IInputActionCollection, IDisposable
         void OnMoveLeft(InputAction.CallbackContext context);
         void OnMoveRight(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnCustomScreen(InputAction.CallbackContext context);
     }
 }
