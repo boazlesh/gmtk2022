@@ -24,7 +24,7 @@ namespace Assets.Scripts
 
         public IEnumerator RollRandomFacesRoutine(float timeSeconds)
         {
-            timeSeconds = Mathf.Min(timeSeconds, _audioClip.length);
+            //timeSeconds = Mathf.Min(timeSeconds, _audioClip.length); // boaz: how about no
 
             _audioSource.PlayOneShot(_audioClip);
 

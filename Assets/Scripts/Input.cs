@@ -65,6 +65,14 @@ public class @Input : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""UseTopAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""8cdc90da-de2c-4786-a7dc-6204c0df0824"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -213,6 +221,17 @@ public class @Input : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""96a8229e-28dd-418a-9877-30a9afab2e8b"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b4351b5e-1377-469a-b403-4295a8aebabf"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
@@ -232,6 +251,39 @@ public class @Input : IInputActionCollection, IDisposable
                     ""action"": ""CustomScreen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d735a3d5-44dc-41f3-af8b-a36a5fd93cb0"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CustomScreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""722f4168-b32f-4d8c-acec-632687b69fbe"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseTopAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""433dd061-3d50-4b6b-b7aa-66cbde154ccc"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseTopAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -246,6 +298,7 @@ public class @Input : IInputActionCollection, IDisposable
         m_BattleActionMap_MoveRight = m_BattleActionMap.FindAction("MoveRight", throwIfNotFound: true);
         m_BattleActionMap_Pause = m_BattleActionMap.FindAction("Pause", throwIfNotFound: true);
         m_BattleActionMap_CustomScreen = m_BattleActionMap.FindAction("CustomScreen", throwIfNotFound: true);
+        m_BattleActionMap_UseTopAbility = m_BattleActionMap.FindAction("UseTopAbility", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -301,6 +354,7 @@ public class @Input : IInputActionCollection, IDisposable
     private readonly InputAction m_BattleActionMap_MoveRight;
     private readonly InputAction m_BattleActionMap_Pause;
     private readonly InputAction m_BattleActionMap_CustomScreen;
+    private readonly InputAction m_BattleActionMap_UseTopAbility;
     public struct BattleActionMapActions
     {
         private @Input m_Wrapper;
@@ -311,6 +365,7 @@ public class @Input : IInputActionCollection, IDisposable
         public InputAction @MoveRight => m_Wrapper.m_BattleActionMap_MoveRight;
         public InputAction @Pause => m_Wrapper.m_BattleActionMap_Pause;
         public InputAction @CustomScreen => m_Wrapper.m_BattleActionMap_CustomScreen;
+        public InputAction @UseTopAbility => m_Wrapper.m_BattleActionMap_UseTopAbility;
         public InputActionMap Get() { return m_Wrapper.m_BattleActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -338,6 +393,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @CustomScreen.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnCustomScreen;
                 @CustomScreen.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnCustomScreen;
                 @CustomScreen.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnCustomScreen;
+                @UseTopAbility.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnUseTopAbility;
+                @UseTopAbility.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnUseTopAbility;
+                @UseTopAbility.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnUseTopAbility;
             }
             m_Wrapper.m_BattleActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -360,6 +418,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @CustomScreen.started += instance.OnCustomScreen;
                 @CustomScreen.performed += instance.OnCustomScreen;
                 @CustomScreen.canceled += instance.OnCustomScreen;
+                @UseTopAbility.started += instance.OnUseTopAbility;
+                @UseTopAbility.performed += instance.OnUseTopAbility;
+                @UseTopAbility.canceled += instance.OnUseTopAbility;
             }
         }
     }
@@ -372,5 +433,6 @@ public class @Input : IInputActionCollection, IDisposable
         void OnMoveRight(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnCustomScreen(InputAction.CallbackContext context);
+        void OnUseTopAbility(InputAction.CallbackContext context);
     }
 }

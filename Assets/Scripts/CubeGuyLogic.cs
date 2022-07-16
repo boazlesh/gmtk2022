@@ -14,6 +14,8 @@ public class CubeGuyLogic : MonoBehaviour
     [SerializeField] private AudioClip _audioClipMove;
     [SerializeField] private FaceColorMapping _faceColorMapping;
     [SerializeField] private CustomScreen _customScreen;
+    [SerializeField] private Color _mutedColor = new Color(0.8f, 0.8f, 0.8f, 1.0f);
+    [SerializeField] private float _mutedColorStrength = 0.75f;
 
     private AudioSource _audioSource;
     private Animator _animator;
@@ -27,7 +29,7 @@ public class CubeGuyLogic : MonoBehaviour
     private Direction? _bufferedMoveDirection;
     private bool _isCustomScreenAvailable = true;
     private bool _isInCustomScreen = false;
-    private List<ActionInstance> _actionInstances = new List<ActionInstance>();
+    private Dictionary<FaceColor, ActionInstance> _actionInstances = new Dictionary<FaceColor, ActionInstance>();
 
     public void Awake()
     {
@@ -44,6 +46,7 @@ public class CubeGuyLogic : MonoBehaviour
         _input.BattleActionMap.MoveLeft.performed += _ => Move(Direction.Left);
         _input.BattleActionMap.MoveRight.performed += _ => Move(Direction.Right);
         _input.BattleActionMap.CustomScreen.performed += _ => EnterCustomScreenIfPossible();
+        _input.BattleActionMap.UseTopAbility.performed += _ => UseTopAbility();
     }
 
     private void ColorFaces()
@@ -51,6 +54,19 @@ public class CubeGuyLogic : MonoBehaviour
         _spriteTop.color = _faceColorMapping.GetColorFromFaceColor(_faceTop);
         _spriteFront.color = _faceColorMapping.GetColorFromFaceColor(_faceFront);
         _spriteSide.color = _faceColorMapping.GetColorFromFaceColor(_faceSide);
+
+        if (!_actionInstances.ContainsKey(_faceTop))
+        {
+            _spriteTop.color = Color.Lerp(_spriteTop.color, _mutedColor, _mutedColorStrength);
+        }
+        if (!_actionInstances.ContainsKey(_faceFront))
+        {
+            _spriteFront.color = Color.Lerp(_spriteFront.color, _mutedColor, _mutedColorStrength);
+        }
+        if (!_actionInstances.ContainsKey(_faceSide))
+        {
+            _spriteSide.color = Color.Lerp(_spriteSide.color, _mutedColor, _mutedColorStrength);
+        }
     }
 
     private void Move(Direction direction)
@@ -162,7 +178,7 @@ public class CubeGuyLogic : MonoBehaviour
 
     private IEnumerator EnterCustomScreenRoutine()
     {
-        CoroutineResult<List<ActionInstance>> resultWrapper = new CoroutineResult<List<ActionInstance>>();
+        CoroutineResult<Dictionary<FaceColor, ActionInstance>> resultWrapper = new CoroutineResult<Dictionary<FaceColor, ActionInstance>>();
 
         _isInCustomScreen = true;
 
@@ -173,8 +189,21 @@ public class CubeGuyLogic : MonoBehaviour
         _isInCustomScreen = false;
 
         _actionInstances = resultWrapper.Value;
+        ColorFaces();
 
         _input.Enable();
+    }
 
+    private void UseTopAbility()
+    {
+        if (!_actionInstances.ContainsKey(_faceTop))
+        {
+            return;
+        }
+
+        var abilityInstance = _actionInstances[_faceTop];
+
+        _actionInstances.Remove(_faceTop);
+        ColorFaces();
     }
 }
