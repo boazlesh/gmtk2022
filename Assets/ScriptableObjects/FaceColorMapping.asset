@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5581765c6f4bfcb4897e270004406d60, type: 3}
   m_Name: FaceColorMapping
   m_EditorClassIdentifier: 
-  _red: {r: 0.6, g: 0.10196079, b: 0.10196079, a: 1}
-  _green: {r: 0.10196079, g: 0.6, b: 0.10196079, a: 1}
-  _blue: {r: 0.10196079, g: 0.10196079, b: 0.6, a: 1}
+  _red: {r: 0.9372549, g: 0.07058824, b: 0.09803922, a: 1}
+  _green: {r: 0.16862746, g: 1, b: 0.3254902, a: 1}
+  _blue: {r: 0.14901961, g: 0.3529412, b: 0.98039216, a: 1}
   _gray: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
