@@ -57,9 +57,10 @@ namespace Assets
         {
             Die die = Instantiate(_diePrefab, _content);
 
+            die.SetColor(_faceColor);
+
             yield return die.RollRandomFacesRoutine(rollTimeSeconds);
 
-            die.SetColor(_faceColor);
             die.SetFace(dieFace);
 
             _sum += DieFaceHelper.GetNumericValue(dieFace);
