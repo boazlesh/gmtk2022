@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ActionBlock.cs" />
-    <Compile Include="Assets\Scripts\CubeGuyLogic.cs" />
     <Compile Include="Assets\Scripts\ActionType.cs" />
     <Compile Include="Assets\Scripts\ActionModel.cs" />
     <Compile Include="Assets\Scripts\DieFace.cs" />
