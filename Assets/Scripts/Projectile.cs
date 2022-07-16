@@ -8,6 +8,9 @@ namespace Assets.Scripts
         [SerializeField] private float _speed;
         [SerializeField] private float _ttl;
         [SerializeField] private bool _canKillOtherProjectiles;
+        [SerializeField] private AudioClip _audioClipSpawn;
+
+        private static AudioClip _audioClipKillOtherProjectile;
 
         private bool _isEnemy;
         private int _potency;
@@ -26,6 +29,11 @@ namespace Assets.Scripts
 
             _timeAlive = 0.0f;
             _isAlive = true;
+
+            if (_audioClipSpawn != null)
+            {
+                AudioClipOneShotPlayer.SpawnOneShot(_audioClipSpawn);
+            }
         }
 
         private void FixedUpdate()
@@ -96,6 +104,12 @@ namespace Assets.Scripts
 
                     if (otherProjectile != null)
                     {
+                        if (_audioClipKillOtherProjectile == null)
+                        {
+                            _audioClipKillOtherProjectile = Resources.Load<AudioClip>("SFX/destroy_other_projectile");
+                        }
+
+                        AudioClipOneShotPlayer.SpawnOneShot(_audioClipKillOtherProjectile);
                         Destroy(collision.gameObject);
                     }
                 }

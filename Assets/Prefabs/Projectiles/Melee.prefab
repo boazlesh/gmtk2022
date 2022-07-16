@@ -48,6 +48,7 @@ MonoBehaviour:
   _speed: 5
   _ttl: 0.15
   _canKillOtherProjectiles: 1
+  _audioClipSpawn: {fileID: 8300000, guid: 22e113773f6cf264ba64bfe21e1cc799, type: 3}
 --- !u!50 &1384759306070824278
 Rigidbody2D:
   serializedVersion: 4
