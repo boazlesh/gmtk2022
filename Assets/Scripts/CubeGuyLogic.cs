@@ -1,5 +1,6 @@
 using Assets.Scripts;
 using Assets.Scripts.Utils;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,11 +16,15 @@ public class CubeGuyLogic : MonoBehaviour
     [SerializeField] private CustomScreen _customScreen;
 
     private AudioSource _audioSource;
+    private Animator _animator;
+
     private Vector2Int _boardPosition;
     private Input _input;
     private FaceColor _faceTop = FaceColor.Red;
     private FaceColor _faceSide = FaceColor.Green;
     private FaceColor _faceFront = FaceColor.Blue;
+    private bool _isMoveAnimationPlaying;
+    private Direction? _bufferedMoveDirection;
     private bool _isCustomScreenAvailable = true;
     private bool _isInCustomScreen = false;
     private List<ActionInstance> _actionInstances = new List<ActionInstance>();
@@ -27,6 +32,7 @@ public class CubeGuyLogic : MonoBehaviour
     public void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        _animator = transform.GetComponentInChildren<Animator>();
 
         ColorFaces();
 
@@ -49,14 +55,59 @@ public class CubeGuyLogic : MonoBehaviour
 
     private void Move(Direction direction)
     {
+        if (_isMoveAnimationPlaying)
+        {
+            _bufferedMoveDirection = direction;
+
+            return;
+        }
+
+        _bufferedMoveDirection = null;
+
+        ActuallyMove(direction);
+    }
+
+    private void ActuallyMove(Direction direction)
+    {
         if (!MoveOnBoard(direction))
         {
             return;
         }
 
+        StartCoroutine(MoveCoroutine(direction));
+    }
+
+    private IEnumerator MoveCoroutine(Direction direction)
+    {
+        yield return CoolShitWhenMoving(direction);
+
+        transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
+        RotateCube(direction);
+
+        if (_bufferedMoveDirection.HasValue)
+        {
+            ActuallyMove(_bufferedMoveDirection.Value);
+            _bufferedMoveDirection = null;
+        }
+    }
+
+    private IEnumerator CoolShitWhenMoving(Direction direction)
+    {
         _audioSource.PlayOneShot(_audioClipMove);
 
-        RotateCube(direction);
+        _isMoveAnimationPlaying = true;
+
+        string animationName = $"CubeRoll{direction}"; // jam schuna
+        _animator.Play(animationName, 0, 0);
+        yield return new WaitForSeconds(0.25f); // nothing works... just wait the time you know it is jesus christ
+
+        _animator.StopPlayback();
+        yield return null;
+
+        _animator.transform.localPosition = Vector3.zero;
+        _animator.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+        _isMoveAnimationPlaying = false;
     }
 
     private bool MoveOnBoard(Direction direction)
@@ -69,7 +120,6 @@ public class CubeGuyLogic : MonoBehaviour
         }
 
         _boardPosition = movePosition;
-        transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
 
         return true;
     }
