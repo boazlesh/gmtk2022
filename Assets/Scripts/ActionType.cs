@@ -3,6 +3,7 @@
     public enum ActionType
     {
         Cannon,
+        Gun,
         Laser,
         Sword,
         Heal
