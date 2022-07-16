@@ -20,6 +20,7 @@ namespace Assets
             }
 
             _sumLabel.text = "0";
+            _sum = 0;
         }
 
         private void OnValidate()
@@ -35,6 +36,11 @@ namespace Assets
             }
         }
 
+        public void Roll()
+        {
+            AddDie(DieFaceHelper.Roll());
+        }
+
         public void AddDie(DieFace dieFace)
         {
             Die die = Instantiate(_diePrefab, _content);
@@ -46,6 +52,8 @@ namespace Assets
 
             _sumLabel.text = _sum.ToString();
         }
+
+        public int GetSum() => _sum;
 
         [ContextMenu("Add Die")]
         public void AddDieDebug()

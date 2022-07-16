@@ -70,9 +70,13 @@
     <Compile Include="Assets\Scripts\Utils\GenericDictionary.cs" />
     <Compile Include="Assets\Scripts\DieFaceMapping.cs" />
     <Compile Include="Assets\Scripts\CustomScreen.cs" />
-    <Compile Include="Assets\Scripts\Utils\CoroutineExtensions.cs" />
-    <Compile Include="Assets\Scripts\ActionInstance.cs" />
+    <Compile Include="Assets\Scripts\Enums\FaceColor.cs" />
+    <Compile Include="Assets\Scripts\Enums\Direction.cs" />
+    <Compile Include="Assets\Scripts\Input.cs" />
+    <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\Utils\CoroutineResult.cs" />
+    <Compile Include="Assets\Scripts\ActionInstance.cs" />
+    <Compile Include="Assets\Scripts\Utils\CoroutineExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

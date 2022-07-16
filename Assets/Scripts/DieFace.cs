@@ -1,37 +1,33 @@
-﻿namespace Assets.Scripts
+﻿using UnityEngine;
+
+namespace Assets.Scripts
 {
     public enum DieFace
     {
-        Zero,
-        One,
-        Two,
-        Three,
-        Four,
-        Five,
-        Six
+        Zero = 0,
+        One = 1,
+        Two = 2,
+        Three = 3,
+        Four = 4,
+        Five = 5,
+        Six = 6
     }
 
     public static class DieFaceHelper
     {
+        static DieFaceHelper()
+        {
+            Random.InitState(System.DateTime.Now.Millisecond);
+        }
+
         public static int GetNumericValue(DieFace dieFace)
         {
-            switch (dieFace)
-            {
-                case DieFace.One:
-                    return 1;
-                case DieFace.Two:
-                    return 2;
-                case DieFace.Three:
-                    return 3;
-                case DieFace.Four:
-                    return 4;
-                case DieFace.Five:
-                    return 5;
-                case DieFace.Six:
-                    return 6;
-                default:
-                    return 0;
-            }
+            return (int)dieFace;
+        }
+
+        public static DieFace Roll()
+        {
+            return (DieFace)Random.Range(1, 6);
         }
     }
 }

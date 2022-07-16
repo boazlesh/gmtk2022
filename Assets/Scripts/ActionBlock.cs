@@ -10,6 +10,8 @@ public class ActionBlock : MonoBehaviour
     [SerializeField] private Image _outlineImage;
     [SerializeField] private ActionType _actionType;
 
+    private ActionModel _actionModel; 
+
     private void OnValidate()
     {
         _outlineImage.color = _color;
@@ -19,7 +21,11 @@ public class ActionBlock : MonoBehaviour
 
     public void SetAction(ActionModel actionModel)
     {
+        _actionModel = actionModel;
+
         _actionImage.sprite = actionModel._sprite;
         _actionType = actionModel._actionType;
     }
+
+    public ActionModel GetAction() => _actionModel;
 }
