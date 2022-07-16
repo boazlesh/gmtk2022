@@ -21,7 +21,7 @@ namespace Assets
 
         private void OnValidate()
         {
-            transform.position = _board.BoardPositionToWorldPosition(_boardPosition);
+            SyncWorldPositionToBoardPosition();
         }
 
         private void Start()
@@ -61,7 +61,7 @@ namespace Assets
                         {
                             return Direction.Down;
                         }
-                        else if (_boardPosition.x > 4)
+                        else if (_boardPosition.x > 3)
                         {
                             return Direction.Left;
                         }
@@ -78,7 +78,7 @@ namespace Assets
 
         private IEnumerator PerformMovementRoutine(Direction direction)
         {
-            Vector2Int movePosition = _board.GetMoveAttemptPosition(_boardPosition, direction);
+            Vector2Int movePosition = _board.GetMoveAttemptPosition(_boardPosition, direction, player: false);
 
             if (_boardPosition == movePosition)
             {
@@ -87,6 +87,7 @@ namespace Assets
             }
 
             _boardPosition = movePosition;
+            SyncWorldPositionToBoardPosition();
 
             yield return true;
             yield break;
@@ -97,5 +98,9 @@ namespace Assets
             return null;
         }
 
+        private void SyncWorldPositionToBoardPosition()
+        {
+            transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
+        }
     }
 }

@@ -146,7 +146,7 @@ public class CubeGuyLogic : MonoBehaviour
 
     private bool MoveOnBoard(Direction direction)
     {
-        Vector2Int movePosition = _board.GetMoveAttemptPosition(_boardPosition, direction);
+        Vector2Int movePosition = _board.GetMoveAttemptPosition(_boardPosition, direction, player: true);
 
         if (_boardPosition == movePosition)
         {
