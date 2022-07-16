@@ -156,7 +156,7 @@ namespace Assets
             _animator.SetBool("attacking", true);
 
             Projectile projectile = Instantiate(_actionInstance.Action._projectilePrefab, parent: null);
-            projectile.Initialize(_projectilePosition.transform.position, speed: -8f, potency: _actionInstance.Potency, isEnemy: true);
+            projectile.Initialize(_projectilePosition.transform.position, potency: _actionInstance.Potency, isEnemy: true);
 
             yield return new WaitForSeconds(1f);
 

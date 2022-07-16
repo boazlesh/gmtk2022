@@ -41,6 +41,8 @@ namespace Assets.Scripts
         {
             gameObject.SetActive(true);
 
+            PauseUnpauseAllProjectilesThxbby(pauseOrUnpause: true);
+
             _isSubmitted = false;
 
             SetDiceLeft(5);
@@ -72,6 +74,8 @@ namespace Assets.Scripts
             yield return actionInstances;
 
             gameObject.SetActive(false);
+
+            PauseUnpauseAllProjectilesThxbby(pauseOrUnpause: false);
         }
 
         private void SetActions()
@@ -146,6 +150,14 @@ namespace Assets.Scripts
         public void Submit()
         {
             _isSubmitted = true;
+        }
+
+        private static void PauseUnpauseAllProjectilesThxbby(bool pauseOrUnpause)
+        {
+            foreach (var x in FindObjectsOfType<Projectile>())
+            {
+                x.PausePleaseThanks = pauseOrUnpause;
+            }
         }
     }
 }

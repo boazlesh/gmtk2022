@@ -5,25 +5,32 @@ namespace Assets.Scripts
 {
     public class Projectile : MonoBehaviour
     {
+        [SerializeField] private float _speed;
+
         private bool _isEnemy;
         private int _potency;
-        private float _speed;
         private bool _isAlive;
 
-        public void Initialize(Vector3 worldPosition, float speed, int potency, bool isEnemy)
+        public bool PausePleaseThanks;
+
+        public void Initialize(Vector3 worldPosition, int potency, bool isEnemy)
         {
             _isEnemy = isEnemy;
             transform.position = worldPosition;
-            _speed = speed;
             _potency = potency;
 
-            transform.localScale = new Vector3(_speed >= 0 ? -1 : 1, 1, 1);
+            transform.localScale = new Vector3(_isEnemy ? 1 : -1, 1, 1);
 
             _isAlive = true;
         }
 
         private void FixedUpdate()
         {
+            if (PausePleaseThanks)
+            {
+                return;
+            }
+
             if (!_isAlive)
             {
                 Destroy(gameObject); // backup I guess...
@@ -38,7 +45,8 @@ namespace Assets.Scripts
                 return;
             }
 
-            float newX = transform.position.x + Time.fixedDeltaTime * _speed;
+            int direction = _isEnemy ? -1 : 1;
+            float newX = transform.position.x + (Time.fixedDeltaTime * _speed * direction);
             transform.position = new Vector3(newX, transform.position.y, transform.position.z);
         }
 
@@ -60,6 +68,10 @@ namespace Assets.Scripts
                     player.GetComponent<HealthComponent>().TakeDamage(_potency);
 
                     _isAlive = false;
+                }
+                else
+                {
+                    Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
                 }
             }
             else

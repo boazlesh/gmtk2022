@@ -232,6 +232,6 @@ public class CubeGuyLogic : MonoBehaviour
         }
 
         Projectile projectile = Instantiate(abilityInstance.Action._projectilePrefab, parent: null);
-        projectile.Initialize(_projectilePosition.transform.position, speed: 8f, potency: abilityInstance.Potency, isEnemy: false);
+        projectile.Initialize(_projectilePosition.transform.position, potency: abilityInstance.Potency, isEnemy: false);
     }
 }
