@@ -5,14 +5,14 @@ public class CubeGuyLogic : MonoBehaviour
 {
     [SerializeField] private Board _board;
     [SerializeField] private SpriteRenderer _spriteTop;
-    [SerializeField] private SpriteRenderer _spriteFront;
     [SerializeField] private SpriteRenderer _spriteSide;
+    [SerializeField] private SpriteRenderer _spriteFront;
 
     private Vector2Int _boardPosition;
     private Input _input;
     private FaceColor _faceTop = FaceColor.Red;
-    private FaceColor _faceFront = FaceColor.Blue;
     private FaceColor _faceSide = FaceColor.Green;
+    private FaceColor _faceFront = FaceColor.Blue;
 
     public void Awake()
     {
@@ -36,20 +36,52 @@ public class CubeGuyLogic : MonoBehaviour
 
     private void Move(Direction direction)
     {
-        MoveOnBoard(direction);
+        if (!MoveOnBoard(direction))
+        {
+            return;
+        }
+
         RotateCube(direction);
     }
 
-    private void MoveOnBoard(Direction direction)
+    private bool MoveOnBoard(Direction direction)
     {
         Vector2Int movePosition = _board.GetMoveAttemptPosition(_boardPosition, direction);
 
+        if (_boardPosition == movePosition)
+        {
+            return false;
+        }
+
         _boardPosition = movePosition;
         transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
+
+        return true;
     }
 
     private void RotateCube(Direction direction)
     {
+        FaceColor originalTop = _faceTop;
+        FaceColor originalFront = _faceFront;
+        FaceColor originalSide = _faceSide;
 
+        switch (direction)
+        {
+            case Direction.Up:
+            case Direction.Down:
+                _faceTop = originalFront;
+                _faceFront = originalTop;
+                break;
+            case Direction.Left:
+            case Direction.Right:
+                _faceTop = originalSide;
+                _faceSide = originalTop;
+                break;
+            default:
+                Debug.LogError($"{nameof(RotateCube)} with unknown direction: {direction}");
+                break;
+        }
+
+        ColorFaces();
     }
 }
