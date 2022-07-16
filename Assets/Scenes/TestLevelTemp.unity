@@ -857,6 +857,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 4567686905192570921}
     m_Modifications:
     - target: {fileID: 661187108823288400, guid: b0f65c52d1ffe1e478edcc57e16cb90a, type: 3}
+      propertyPath: _actionInstance
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c07cf767ed2cca498153d35bbb5061d, type: 2}
+    - target: {fileID: 661187108823288400, guid: b0f65c52d1ffe1e478edcc57e16cb90a, type: 3}
       propertyPath: _boardPosition.x
       value: 4
       objectReference: {fileID: 0}
