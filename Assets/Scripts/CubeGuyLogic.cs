@@ -97,11 +97,11 @@ public class CubeGuyLogic : MonoBehaviour
 
         _isMoveAnimationPlaying = true;
 
-        string animationName = $"CubeRoll{direction}"; // jam schuna
-        _animator.Play(animationName, 0, 0);
+        // jam schuna
+        string animationName = $"CubeRoll{direction}";
+        _animator.Play(animationName, layer: 0);
         yield return new WaitForSeconds(0.25f); // nothing works... just wait the time you know it is jesus christ
-
-        _animator.StopPlayback();
+        _animator.Play("Idle");
         yield return null;
 
         _animator.transform.localPosition = Vector3.zero;
