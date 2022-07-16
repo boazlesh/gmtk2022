@@ -278,6 +278,11 @@ public class CubeGuyLogic : MonoBehaviour
 
         Projectile projectile = Instantiate(abilityInstance.Action._projectilePrefab, parent: null);
         projectile.Initialize(_projectilePosition.transform.position, potency: abilityInstance.Potency, isEnemy: false);
+
+        if (abilityInstance.Action._heal)
+        {
+            GetComponent<HealthComponent>().Heal(abilityInstance.Potency);
+        }
     }
 
     private void OnCustomGaugeComplete()

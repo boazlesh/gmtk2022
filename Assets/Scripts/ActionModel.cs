@@ -10,5 +10,7 @@ namespace Assets.Scripts
         [SerializeField] public ActionType _actionType;
 
         [SerializeField] public Projectile _projectilePrefab;
+
+        [SerializeField] public bool _heal;
     }
 }
