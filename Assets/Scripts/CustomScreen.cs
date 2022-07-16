@@ -16,14 +16,29 @@ namespace Assets.Scripts
         [SerializeField] private DieRollWindow _blueDieRollWindow;
         [SerializeField] private DieRollWindow _greenDieRollWindow;
 
-        private void Awake()
+        private bool _isSubmitted = false;
+
+        private void Start()
         {
-            SetActions();
+            StartCoroutine(SelectActionsRoutine());
         }
 
         public IEnumerator SelectActionsRoutine()
         {
-            yield return new List<ActionInstance> { new ActionInstance { Action = _actionLibrary[0], Potency = 1 } };
+            _isSubmitted = false;
+
+            SetActions();
+
+            RollDice();
+
+            yield return new WaitUntil(() => _isSubmitted);
+
+            yield return new List<ActionInstance>
+            {
+                new ActionInstance { Action = _redActionBlock.GetAction(), Potency = _redDieRollWindow.GetSum() },
+                new ActionInstance { Action = _blueActionBlock.GetAction(), Potency = _blueDieRollWindow.GetSum() },
+                new ActionInstance { Action = _greenActionBlock.GetAction(), Potency = _greenDieRollWindow.GetSum() }
+            };
         }
 
         private void SetActions()
@@ -31,6 +46,18 @@ namespace Assets.Scripts
             _redActionBlock.SetAction(_actionLibrary[0]);
             _blueActionBlock.SetAction(_actionLibrary[1]);
             _greenActionBlock.SetAction(_actionLibrary[2]);
+        }
+
+        private void RollDice()
+        {
+            _redDieRollWindow.Roll();
+            _blueDieRollWindow.Roll();
+            _greenDieRollWindow.Roll();
+        }
+
+        public void Submit()
+        {
+            _isSubmitted = true;
         }
     }
 }
