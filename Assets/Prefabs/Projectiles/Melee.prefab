@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69a2fbb0a259af4c800968117d4a71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.1
+  _speed: 5
+  _ttl: 0.15
+  _canKillOtherProjectiles: 1
 --- !u!50 &1384759306070824278
 Rigidbody2D:
   serializedVersion: 4
@@ -77,7 +79,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1398478070034920897}
   - component: {fileID: 8942878283430200323}
-  - component: {fileID: 4661380913807192015}
+  - component: {fileID: 4883765016458691109}
   m_Layer: 0
   m_Name: SpriteOffset
   m_TagString: Untagged
@@ -94,7 +96,7 @@ Transform:
   m_GameObject: {fileID: 6591598362041512084}
   m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: -1, z: 1}
+  m_LocalScale: {x: 1, y: -1, z: 1}
   m_Children: []
   m_Father: {fileID: 661187108823288402}
   m_RootOrder: 0
@@ -150,8 +152,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4661380913807192015
-CircleCollider2D:
+--- !u!70 &4883765016458691109
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -163,6 +165,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07531768, y: -0.019899845}
-  serializedVersion: 2
-  m_Radius: 0.15347916
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
