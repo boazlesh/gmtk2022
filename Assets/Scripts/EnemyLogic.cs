@@ -13,6 +13,7 @@ namespace Assets
         [SerializeField] public Transform _projectilePosition;
         [SerializeField] public Animator _animator;
         [SerializeField] public AudioClip _audioClipDeath;
+        [SerializeField] public SpriteRenderer _spriteRenderer;
 
         private CubeGuyLogic _player;
         private Board _board;
@@ -38,7 +39,10 @@ namespace Assets
             _board.Place(_boardPosition, gameObject);
             _player.OnCustomScreenEnter += OnCustomScreenEnter;
             _player.OnCustomScreenExit += OnCustomScreenExit;
+        }
 
+        public void Act()
+        {
             StartCoroutine(ActRoutine());
         }
 

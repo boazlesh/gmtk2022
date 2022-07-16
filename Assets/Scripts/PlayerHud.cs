@@ -1,4 +1,5 @@
-﻿using Assets.Scripts;
+﻿using Assets;
+using Assets.Scripts;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class PlayerHud : MonoBehaviour
     [SerializeField] private ActionBlock _actionBlockRed;
     [SerializeField] private ActionBlock _actionBlockGreen;
     [SerializeField] private ActionBlock _actionBlockBlue;
+    [SerializeField] public CustomGauge _customGauge;
 
     public void UpdateActions(Dictionary<FaceColor, ActionInstance> actionInstances)
     {

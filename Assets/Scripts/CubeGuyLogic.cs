@@ -1,8 +1,10 @@
+using Assets;
 using Assets.Scripts;
 using Assets.Scripts.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CubeGuyLogic : MonoBehaviour
@@ -50,8 +52,43 @@ public class CubeGuyLogic : MonoBehaviour
         _input.BattleActionMap.CustomScreen.performed += _ => EnterCustomScreenIfPossible();
         _input.BattleActionMap.UseTopAbility.performed += _ => UseTopAbility();
 
+        _playerHud._customGauge.OnCustomGaugeComplete += OnCustomGaugeComplete;
+
         PauseMenu.OnGamePause += () => _input.Disable();
         PauseMenu.OnGameResumed += () => _input.Enable();
+    }
+
+    private IEnumerator Start()
+    {
+        _input.Disable();
+
+        yield return FadeEnemiesInRoutine();
+
+        EnterCustomScreenIfPossible();
+
+        foreach (EnemyLogic enemy in FindObjectsOfType<EnemyLogic>())
+        {
+            enemy.Act();
+        }
+
+        _input.Enable();
+    }
+
+    private IEnumerator FadeEnemiesInRoutine()
+    {
+        var enemies = FindObjectsOfType<EnemyLogic>().OrderBy(e => e._boardPosition.y);
+
+        foreach (EnemyLogic enemy in enemies)
+        {
+            var color = enemy._spriteRenderer.material.color;
+
+            enemy._spriteRenderer.material.color = new Color(color.r, color.g, color.b, a: 0);
+        }
+
+        foreach (EnemyLogic enemy in enemies)
+        {
+            yield return FadeToRoutine(enemy._spriteRenderer, 1, 1f);
+        }
     }
 
     private void OnEnable()
@@ -207,6 +244,9 @@ public class CubeGuyLogic : MonoBehaviour
         ColorFaces();
 
         _input.Enable();
+
+        _isCustomScreenAvailable = false;
+        _playerHud._customGauge.RunCustomGauge();
     }
 
     private void UseTopAbility()
@@ -233,5 +273,23 @@ public class CubeGuyLogic : MonoBehaviour
 
         Projectile projectile = Instantiate(abilityInstance.Action._projectilePrefab, parent: null);
         projectile.Initialize(_projectilePosition.transform.position, potency: abilityInstance.Potency, isEnemy: false);
+    }
+
+    private void OnCustomGaugeComplete()
+    {
+        _isCustomScreenAvailable = true;
+    }
+
+    private IEnumerator FadeToRoutine(SpriteRenderer spriteRenderer, float targetAlpha, float timeSeconds)
+    {
+        Color color = spriteRenderer.material.color;
+
+        float original = color.a;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / timeSeconds)
+        {
+            Color newColor = new Color(color.r, color.g, color.b, Mathf.Lerp(original, targetAlpha, t));
+            spriteRenderer.material.color = newColor;
+            yield return null;
+        }
     }
 }
