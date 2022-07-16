@@ -33,12 +33,24 @@ namespace Assets.Scripts
 
             yield return new WaitUntil(() => _isSubmitted);
 
-            yield return new List<ActionInstance>
+            List<ActionInstance> actionInstances = new List<ActionInstance>();
+
+            if (!_redDieRollWindow.IsBust())
             {
-                new ActionInstance { Action = _redActionBlock.GetAction(), Potency = _redDieRollWindow.GetSum() },
-                new ActionInstance { Action = _blueActionBlock.GetAction(), Potency = _blueDieRollWindow.GetSum() },
-                new ActionInstance { Action = _greenActionBlock.GetAction(), Potency = _greenDieRollWindow.GetSum() }
-            };
+                actionInstances.Add(new ActionInstance { Action = _redActionBlock.GetAction(), Potency = _redDieRollWindow.GetSum() });
+            }
+
+            if (!_blueDieRollWindow.IsBust())
+            {
+                actionInstances.Add(new ActionInstance { Action = _blueActionBlock.GetAction(), Potency = _blueDieRollWindow.GetSum() });
+            }
+
+            if (!_greenDieRollWindow.IsBust())
+            {
+                actionInstances.Add(new ActionInstance { Action = _greenActionBlock.GetAction(), Potency = _greenDieRollWindow.GetSum() });
+            }
+
+            yield return actionInstances;
         }
 
         private void SetActions()
