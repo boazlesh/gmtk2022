@@ -47,6 +47,7 @@ MonoBehaviour:
   _actionCooldownSeconds: 1
   _actionInstance: {fileID: 11400000, guid: 3c07cf767ed2cca498153d35bbb5061d, type: 2}
   _boardPosition: {x: 2, y: 1}
+  _spritePosition: {fileID: 1398478070034920897}
 --- !u!1 &6591598362041512084
 GameObject:
   m_ObjectHideFlags: 0

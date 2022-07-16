@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58c088a5646a4a247ba6afcd43229fee, type: 3}
-  m_Name: SwordAction
+  m_Name: LaserAction
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 255350f637c308f4c8215e6e44f9f5a3, type: 3}
-  _actionType: 2
+  _sprite: {fileID: 21300000, guid: 530f455d4a79ed8449e1296f180c66be, type: 3}
+  _actionType: 1
   _projectilePrefab: {fileID: 0}

@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actionCooldownSeconds: 1
-  _actionInstance: {fileID: 11400000, guid: 3c07cf767ed2cca498153d35bbb5061d, type: 2}
+  _actionInstance: {fileID: 11400000, guid: 852d3414241ae3944a17fdfb47453b8d, type: 2}
   _boardPosition: {x: 4, y: 1}
+  _projectilePosition: {fileID: 0}
 --- !u!1 &6591598362041512084
 GameObject:
   m_ObjectHideFlags: 0

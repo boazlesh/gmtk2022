@@ -8,5 +8,7 @@ namespace Assets.Scripts
         [SerializeField] public Sprite _sprite;
 
         [SerializeField] public ActionType _actionType;
+
+        [SerializeField] public Projectile _projectilePrefab;
     }
 }

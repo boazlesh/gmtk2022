@@ -10,6 +10,7 @@ namespace Assets
         [SerializeField] private float _actionCooldownSeconds = 1f;
         [SerializeField] private ActionInstance _actionInstance;
         [SerializeField] public Vector2Int _boardPosition;
+        [SerializeField] public Transform _projectilePosition;
 
         private CubeGuyLogic _player;
         private Board _board;
@@ -71,6 +72,7 @@ namespace Assets
         {
             switch (_actionInstance.Action._actionType)
             {
+                case ActionType.Laser:
                 case ActionType.Cannon:
                     {
                         if (_boardPosition.y > _player._boardPosition.y)
@@ -130,7 +132,13 @@ namespace Assets
 
         private IEnumerator PerformActionRoutine()
         {
-            yield return null;
+            if (_actionInstance.Action._projectilePrefab == null)
+            {
+                yield break;
+            }
+
+            Projectile projectile = Instantiate(_actionInstance.Action._projectilePrefab, parent: null);
+            projectile.Initialize(_projectilePosition.transform.position, speed: -5f, potency: _actionInstance.Potency, isEnemy: true);
         }
 
         private void SyncWorldPositionToBoardPosition()

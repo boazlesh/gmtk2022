@@ -298,8 +298,8 @@ MonoBehaviour:
   _audioClipMove: {fileID: 8300000, guid: 882de8abd8cacbe47aedee2e177f329c, type: 3}
   _faceColorMapping: {fileID: 11400000, guid: 8177cfc7a43a7d8468d215f7bb71e530, type: 2}
   _customScreen: {fileID: 0}
-  _mutedColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
-  _mutedColorStrength: 0.66
+  _playerHud: {fileID: 0}
+  _boardPosition: {x: 0, y: 0}
 --- !u!82 &5158299263869599540
 AudioSource:
   m_ObjectHideFlags: 0
@@ -406,6 +406,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3463734516801210291}
   - component: {fileID: 361478622763371859}
+  - component: {fileID: 6587501807903563460}
+  - component: {fileID: 3913699076858838592}
   m_Layer: 0
   m_Name: SpritesHolder
   m_TagString: Untagged
@@ -449,3 +451,50 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &6587501807903563460
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463734516801210290}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.057457685, y: -0.033798665}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8850846, y: 0.9324027}
+  m_EdgeRadius: 0
+--- !u!50 &3913699076858838592
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463734516801210290}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

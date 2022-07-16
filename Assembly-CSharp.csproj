@@ -79,6 +79,7 @@
     <Compile Include="Assets\EnemyLogic.cs" />
     <Compile Include="Assets\Scripts\MovementResult.cs" />
     <Compile Include="Assets\Scripts\PlayerHud.cs" />
+    <Compile Include="Assets\Scripts\Projectile.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

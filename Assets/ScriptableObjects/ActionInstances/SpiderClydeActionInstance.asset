@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5005fa65ddc1b48aa93421deb8b5dc, type: 3}
   m_Name: SpiderClydeActionInstance
   m_EditorClassIdentifier: 
-  Action: {fileID: 11400000, guid: e6bcc0022238a7744980d86d2d42c1ce, type: 2}
+  Action: {fileID: 11400000, guid: 0c292bdeeb7f23648930f708d77fbd6e, type: 2}
   Potency: 2
