@@ -10,6 +10,7 @@ namespace Assets
     public class DieRollWindow : MonoBehaviour
     {
         public event Action OnRoll;
+        public event Action OnRolled;
 
         [SerializeField] private FaceColor _faceColor;
         [SerializeField] private Die _diePrefab;
@@ -48,9 +49,11 @@ namespace Assets
 
         public IEnumerator RollRoutine(float rollTimeSeconds)
         {
+            OnRoll?.Invoke();
+
             yield return AddDieRoutine(DieFaceHelper.Roll(), rollTimeSeconds);
 
-            OnRoll?.Invoke();
+            OnRolled?.Invoke();
         }
 
         public IEnumerator AddDieRoutine(DieFace dieFace, float rollTimeSeconds)

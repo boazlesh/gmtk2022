@@ -30,6 +30,10 @@ namespace Assets.Scripts
             _blueDieRollWindow.OnRoll += OnDieRoll;
             _greenDieRollWindow.OnRoll += OnDieRoll;
 
+            _redDieRollWindow.OnRolled += OnDieRolled;
+            _blueDieRollWindow.OnRolled += OnDieRolled;
+            _greenDieRollWindow.OnRolled += OnDieRolled;
+
             StartCoroutine(SelectActionsRoutine());
         }
 
@@ -83,9 +87,7 @@ namespace Assets.Scripts
 
             bool hasDiceLeft = _diceLeft > 0;
 
-            _redDieRollWindow.SetInteractable(hasDiceLeft);
-            _blueDieRollWindow.SetInteractable(hasDiceLeft);
-            _greenDieRollWindow.SetInteractable(hasDiceLeft);
+            SetRollWindowsInteractable(hasDiceLeft);
         }
 
         private IEnumerator RollDiceRoutine()
@@ -97,6 +99,19 @@ namespace Assets.Scripts
 
         private void OnDieRoll()
         {
+            SetRollWindowsInteractable(false);
+        }
+
+        private void SetRollWindowsInteractable(bool interactable)
+        {
+            _redDieRollWindow.SetInteractable(interactable);
+            _blueDieRollWindow.SetInteractable(interactable);
+            _greenDieRollWindow.SetInteractable(interactable);
+        }
+
+        private void OnDieRolled()
+        {
+            // Set dice left already sets interaction
             SetDiceLeft(_diceLeft - 1);
         }
 
