@@ -2,10 +2,11 @@
 
 namespace Assets.Scripts
 {
-    public class ActionModel
+    [CreateAssetMenu(menuName = "ScriptableObjects/ActionModel")]
+    public class ActionModel : ScriptableObject
     {
-        public Sprite Sprite { get; set; }
+        [SerializeField] public Sprite _sprite;
 
-        public ActionType ActionType { get; set; }
+        [SerializeField] public ActionType _actionType;
     }
 }
