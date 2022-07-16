@@ -297,6 +297,9 @@ MonoBehaviour:
   _spriteFront: {fileID: 3463734514826035831}
   _audioClipMove: {fileID: 8300000, guid: 882de8abd8cacbe47aedee2e177f329c, type: 3}
   _faceColorMapping: {fileID: 11400000, guid: 8177cfc7a43a7d8468d215f7bb71e530, type: 2}
+  _customScreen: {fileID: 0}
+  _mutedColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  _mutedColorStrength: 0.66
 --- !u!82 &5158299263869599540
 AudioSource:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ namespace Assets.Scripts
 {
     public class CustomScreen : MonoBehaviour
     {
-        private const float rollTimeSeconds = 1f;
+        private const float rollTimeSeconds = 0.6f;
 
         [SerializeField] private ActionModel[] _actionLibrary;
 
@@ -52,21 +52,21 @@ namespace Assets.Scripts
 
             yield return new WaitUntil(() => _isSubmitted);
 
-            List<ActionInstance> actionInstances = new List<ActionInstance>();
+            var actionInstances = new Dictionary<FaceColor, ActionInstance>();
 
             if (!_redDieRollWindow.IsBust())
             {
-                actionInstances.Add(new ActionInstance { Action = _redActionBlock.GetAction(), Potency = _redDieRollWindow.GetSum() });
+                actionInstances.Add(FaceColor.Red, new ActionInstance { Action = _redActionBlock.GetAction(), Potency = _redDieRollWindow.GetSum() });
             }
 
             if (!_blueDieRollWindow.IsBust())
             {
-                actionInstances.Add(new ActionInstance { Action = _blueActionBlock.GetAction(), Potency = _blueDieRollWindow.GetSum() });
+                actionInstances.Add(FaceColor.Blue, new ActionInstance { Action = _blueActionBlock.GetAction(), Potency = _blueDieRollWindow.GetSum() });
             }
 
             if (!_greenDieRollWindow.IsBust())
             {
-                actionInstances.Add(new ActionInstance { Action = _greenActionBlock.GetAction(), Potency = _greenDieRollWindow.GetSum() });
+                actionInstances.Add(FaceColor.Green, new ActionInstance { Action = _greenActionBlock.GetAction(), Potency = _greenDieRollWindow.GetSum() });
             }
 
             yield return actionInstances;

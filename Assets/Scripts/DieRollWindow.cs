@@ -88,7 +88,7 @@ namespace Assets
         [ContextMenu("Add Die")]
         public IEnumerator AddDieDebug()
         {
-            yield return AddDieRoutine(DieFace.Five, rollTimeSeconds: 1f);
+            yield return AddDieRoutine(DieFace.Five, rollTimeSeconds: 0.5f);
         }
     }
 }

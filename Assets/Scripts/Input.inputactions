@@ -52,6 +52,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "UseTopAbility",
+                    "type": "Button",
+                    "id": "8cdc90da-de2c-4786-a7dc-6204c0df0824",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -200,6 +208,17 @@
                 },
                 {
                     "name": "",
+                    "id": "96a8229e-28dd-418a-9877-30a9afab2e8b",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b4351b5e-1377-469a-b403-4295a8aebabf",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
@@ -217,6 +236,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "CustomScreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d735a3d5-44dc-41f3-af8b-a36a5fd93cb0",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CustomScreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "722f4168-b32f-4d8c-acec-632687b69fbe",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseTopAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "433dd061-3d50-4b6b-b7aa-66cbde154ccc",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseTopAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
