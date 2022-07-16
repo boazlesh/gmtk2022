@@ -11,6 +11,7 @@ namespace Assets
         [SerializeField] private ActionInstance _actionInstance;
         [SerializeField] public Vector2Int _boardPosition;
         [SerializeField] public Transform _projectilePosition;
+        [SerializeField] public Animator _animator;
         [SerializeField] public AudioClip _audioClipDeath;
 
         private CubeGuyLogic _player;
@@ -29,7 +30,7 @@ namespace Assets
         private void OnValidate()
         {
             _board = FindObjectOfType<Board>();
-            SyncWorldPositionToBoardPosition();
+            transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
         }
 
         private void Start()
@@ -127,10 +128,22 @@ namespace Assets
             }
 
             _boardPosition = movePosition;
-            SyncWorldPositionToBoardPosition();
+            yield return SyncWorldPositionToBoardPositionRoutine();
 
             yield return new MovementResult { DidMove = true };
             yield break;
+        }
+
+        private IEnumerator SmoothLerp(Vector3 startPosition, Vector3 endPosition, float timeSeconds)
+        {
+            float elapsedTime = 0f;
+
+            while (elapsedTime < timeSeconds)
+            {
+                transform.localPosition = Vector3.Lerp(startPosition, endPosition, (elapsedTime / timeSeconds));
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
         }
 
         private IEnumerator PerformActionRoutine()
@@ -140,13 +153,25 @@ namespace Assets
                 yield break;
             }
 
+            _animator.SetBool("attacking", true);
+
             Projectile projectile = Instantiate(_actionInstance.Action._projectilePrefab, parent: null);
             projectile.Initialize(_projectilePosition.transform.position, speed: -8f, potency: _actionInstance.Potency, isEnemy: true);
+
+            yield return new WaitForSeconds(1f);
+
+            _animator.SetBool("attacking", false);
         }
 
-        private void SyncWorldPositionToBoardPosition()
+        private IEnumerator SyncWorldPositionToBoardPositionRoutine()
         {
-            transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
+            Vector3 finalPosition = _board.BoardPositionToWorldPosition(_boardPosition);
+
+            _animator.SetBool("walking", true);
+
+            yield return SmoothLerp(transform.localPosition, finalPosition, timeSeconds: 0.5f);
+
+            _animator.SetBool("walking", false);
         }
 
         private void OnCustomScreenEnter()
