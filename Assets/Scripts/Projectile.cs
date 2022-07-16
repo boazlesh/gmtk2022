@@ -6,12 +6,15 @@ namespace Assets.Scripts
     public class Projectile : MonoBehaviour
     {
         [SerializeField] private float _speed;
+        [SerializeField] private float _ttl;
+        [SerializeField] private bool _canKillOtherProjectiles;
 
         private bool _isEnemy;
         private int _potency;
         private bool _isAlive;
+        private float _timeAlive;
 
-        public bool PausePleaseThanks;
+        [System.NonSerialized] public bool PausePleaseThanks;
 
         public void Initialize(Vector3 worldPosition, int potency, bool isEnemy)
         {
@@ -21,6 +24,7 @@ namespace Assets.Scripts
 
             transform.localScale = new Vector3(_isEnemy ? 1 : -1, 1, 1);
 
+            _timeAlive = 0.0f;
             _isAlive = true;
         }
 
@@ -31,9 +35,14 @@ namespace Assets.Scripts
                 return;
             }
 
+            if (_timeAlive > _ttl)
+            {
+                _isAlive = false;
+            }
+
             if (!_isAlive)
             {
-                Destroy(gameObject); // backup I guess...
+                Destroy(gameObject);
 
                 return;
             }
@@ -48,16 +57,13 @@ namespace Assets.Scripts
             int direction = _isEnemy ? -1 : 1;
             float newX = transform.position.x + (Time.fixedDeltaTime * _speed * direction);
             transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+
+            _timeAlive += Time.fixedDeltaTime;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
             Debug.Log("Collided!");
-
-            if (collision.gameObject.GetComponent<Projectile>() != null)
-            {
-                return;
-            }
 
             if (_isEnemy)
             {
@@ -68,10 +74,6 @@ namespace Assets.Scripts
                     player.GetComponent<HealthComponent>().TakeDamage(_potency);
 
                     _isAlive = false;
-                }
-                else
-                {
-                    Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
                 }
             }
             else
@@ -86,7 +88,21 @@ namespace Assets.Scripts
                 }
             }
 
-            if (!_isAlive)
+            if (_isAlive)
+            {
+                if (_canKillOtherProjectiles)
+                {
+                    Projectile otherProjectile = collision.gameObject.GetComponentInParent<Projectile>();
+
+                    if (otherProjectile != null)
+                    {
+                        Destroy(collision.gameObject);
+                    }
+                }
+
+                Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
+            }
+            else
             {
                 Destroy(gameObject);
             }
