@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 3463734516725345735}
   - component: {fileID: 6634748690862121815}
   - component: {fileID: 5158299263869599540}
+  - component: {fileID: 1361538814018256106}
   m_Layer: 0
   m_Name: CubeGuy
   m_TagString: Untagged
@@ -298,8 +299,8 @@ MonoBehaviour:
   _audioClipMove: {fileID: 8300000, guid: 882de8abd8cacbe47aedee2e177f329c, type: 3}
   _faceColorMapping: {fileID: 11400000, guid: 8177cfc7a43a7d8468d215f7bb71e530, type: 2}
   _customScreen: {fileID: 0}
-  _mutedColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
-  _mutedColorStrength: 0.66
+  _playerHud: {fileID: 0}
+  _boardPosition: {x: 0, y: 0}
 --- !u!82 &5158299263869599540
 AudioSource:
   m_ObjectHideFlags: 0
@@ -396,6 +397,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1361538814018256106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463734516725345734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40a5eebc36b90c4aba4d5d0ff87a456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 20
+  _healthDisplay: {fileID: 0}
 --- !u!1 &3463734516801210290
 GameObject:
   m_ObjectHideFlags: 0
