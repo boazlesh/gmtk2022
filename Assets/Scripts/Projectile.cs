@@ -26,6 +26,15 @@ namespace Assets.Scripts
         {
             if (!_isAlive)
             {
+                Destroy(gameObject); // backup I guess...
+
+                return;
+            }
+
+            if (GetComponentInChildren<SpriteRenderer>()?.isVisible == false) // outside of screen
+            {
+                Destroy(gameObject);
+
                 return;
             }
 
@@ -36,8 +45,6 @@ namespace Assets.Scripts
         private void OnCollisionEnter2D(Collision2D collision)
         {
             Debug.Log("Collided!");
-
-            // TODO: collision with Killzone
 
             if (collision.gameObject.GetComponent<Projectile>() != null)
             {
