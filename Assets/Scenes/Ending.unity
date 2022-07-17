@@ -511,7 +511,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 383441282}
-  - component: {fileID: 383441281}
   - component: {fileID: 383441283}
   m_Layer: 0
   m_Name: Instructions
@@ -520,20 +519,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &383441281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 383441280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e465393eb396bf478c390eac25d16d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _levelLoader: {fileID: 7265261076161280698}
-  _audioSource: {fileID: 383441283}
 --- !u!4 &383441282
 Transform:
   m_ObjectHideFlags: 0
@@ -2411,7 +2396,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 264.9999, y: 100.999954}
+  m_AnchoredPosition: {x: 265, y: 114.7}
   m_SizeDelta: {x: 260, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1654533918
@@ -3181,14 +3166,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2ce52e06cf3cc9418e4136902970878, type: 3}
---- !u!114 &7265261076161280698 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9081204200988641791, guid: c2ce52e06cf3cc9418e4136902970878, type: 3}
-  m_PrefabInstance: {fileID: 7265261076161280697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7dc27c34bf65348abd4b922b121208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
