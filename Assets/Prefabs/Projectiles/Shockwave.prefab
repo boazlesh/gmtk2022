@@ -49,6 +49,7 @@ MonoBehaviour:
   _ttl: 999
   _canKillOtherProjectiles: 0
   _audioClipSpawn: {fileID: 8300000, guid: a73f0017ea652cb419805785f0c5c094, type: 3}
+  _doesBreakOnImpact: 0
 --- !u!50 &1384759306070824278
 Rigidbody2D:
   serializedVersion: 4
