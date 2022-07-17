@@ -47,7 +47,7 @@ namespace Assets.Scripts
         public void SetColor(FaceColor faceColor, bool mute = false)
         {
             _faceColor = faceColor;
-            _dieImage.color = _faceColorMapping.GetColorFromFaceColor(faceColor);
+            _dieImage.color = _faceColorMapping.GetColorFromFaceColor(faceColor, mute);
         }
     }
 }
