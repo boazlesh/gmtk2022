@@ -18,6 +18,7 @@ public class CubeGuyLogic : MonoBehaviour
     [SerializeField] private CustomScreen _customScreen;
     [SerializeField] private PlayerHud _playerHud;
     [SerializeField] public Transform _projectilePosition;
+    [SerializeField] private WinWindow _winWindowPrefab;
 
     private AudioSource _audioSource;
     private Animator _animator;
@@ -62,6 +63,16 @@ public class CubeGuyLogic : MonoBehaviour
         PauseMenu.OnGameResumed += () => _input.Enable();
 
         _healthComponent.OnHurt += OnHurt;
+    }
+
+    public void Win()
+    {
+        Instantiate(_winWindowPrefab);
+    }
+
+    public void Lose()
+    {
+        // TODO
     }
 
     private IEnumerator Start()

@@ -268,6 +268,11 @@ namespace Assets
             AudioClipOneShotPlayer.SpawnOneShot(_audioClipDeath);
 
             Destroy(gameObject);
+
+            if (FindObjectsOfType<EnemyLogic>().Length == 1)
+            {
+                _player.Win();
+            }
         }
 
         private void OnHurt()

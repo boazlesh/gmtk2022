@@ -53,6 +53,8 @@ MonoBehaviour:
   _animator: {fileID: 7197398231295829077}
   _audioClipDeath: {fileID: 8300000, guid: 120a790c41712934aaa4ee89d49c4f8a, type: 3}
   _spriteRenderer: {fileID: 8942878283430200323}
+  _fallbackMovement: 0
+  _winWindowPrefab: {fileID: 3576889971130962229, guid: dab211ee70e788f44bb2100809dd60e7, type: 3}
 --- !u!114 &6678353872909479239
 MonoBehaviour:
   m_ObjectHideFlags: 0
