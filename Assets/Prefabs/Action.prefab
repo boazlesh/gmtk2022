@@ -428,3 +428,5 @@ MonoBehaviour:
   _outlineImage: {fileID: 2083330718526404006}
   _faceColorMapping: {fileID: 11400000, guid: 8177cfc7a43a7d8468d215f7bb71e530, type: 2}
   _text: {fileID: 1993826689623556760}
+  _powerSelectedClip: {fileID: 8300000, guid: 5d26393abf4bc4c4ab518342e29bc1b3, type: 3}
+  _coolTime: 0.4

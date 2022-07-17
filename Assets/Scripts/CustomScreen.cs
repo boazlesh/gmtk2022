@@ -70,7 +70,9 @@ namespace Assets.Scripts
             AudioManager.Instance.ChillOut();
 
             SetDiceLeft(5);
-            SetActions();
+
+            yield return SetActions();
+
             SetSubmitInteractable(false);
             SetDiceRollsInteractable(false);
 
@@ -112,20 +114,13 @@ namespace Assets.Scripts
             AudioManager.Instance.BlastIt();
         }
 
-        private void SetActions()
+        private IEnumerator SetActions()
         {
-            _redActionBlock.SetFaceColor(FaceColor.Red);
-            _redActionBlock.SetAction(_actionLibrary[0]);
-            _redActionBlock.SetText(null);
-
-            _greenActionBlock.SetFaceColor(FaceColor.Green);
-            _greenActionBlock.SetAction(_actionLibrary[1]);
-            _greenActionBlock.SetText(null);
-
-            _blueActionBlock.SetFaceColor(FaceColor.Blue);
-            _blueActionBlock.SetAction(_actionLibrary[2]);
-            _blueActionBlock.SetText(null);
+            yield return _redActionBlock.SetButCool(FaceColor.Red, _actionLibrary[0], 0);
+            yield return _greenActionBlock.SetButCool(FaceColor.Green, _actionLibrary[1], 1);
+            yield return _blueActionBlock.SetButCool(FaceColor.Blue, _actionLibrary[2], 2);
         }
+
 
         public void SetDiceLeft(int diceLeft)
         {
