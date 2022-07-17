@@ -39,4 +39,10 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource.volume = _originalVolume;
     }
+
+    public void FuckOff()
+    {
+        _audioSource.Stop();
+        Destroy(gameObject);
+    }
 }

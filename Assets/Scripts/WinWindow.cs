@@ -20,6 +20,12 @@ public class WinWindow : MonoBehaviour
     {
         FindObjectOfType<CubeGuyLogic>().enabled = false;
 
+        var projectiles = FindObjectsOfType<Projectile>();
+        foreach (var projectile in projectiles)
+        {
+            Destroy(projectile);
+        }
+
         var reward = FindObjectOfType<Reward>();
 
         if (reward != null)
@@ -36,16 +42,8 @@ public class WinWindow : MonoBehaviour
         _input = new Input();
 
         _input.BattleActionMap.Continue.performed += ContinuePerformed;
-    }
 
-    private void OnEnable()
-    {
         _input.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _input.Disable();
     }
 
     private void ContinuePerformed(InputAction.CallbackContext obj)
