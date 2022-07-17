@@ -55,6 +55,11 @@ public class Board : MonoBehaviour
         return resultPosition;
     }
 
+    public void RemoveUnit(Vector2Int position)
+    {
+        _matrix[position.x, position.y] = null;
+    }
+
     private Vector2Int GetMovement(Direction direction)
     {
         switch (direction)

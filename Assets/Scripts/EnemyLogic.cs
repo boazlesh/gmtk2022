@@ -265,6 +265,8 @@ namespace Assets
         {
             AudioClipOneShotPlayer.SpawnOneShot(_audioClipDeath);
 
+            _board.RemoveUnit(_boardPosition);
+
             Destroy(gameObject);
 
             if (FindObjectsOfType<EnemyLogic>().Length == 1)
