@@ -3,6 +3,7 @@
 public class AudioManager : MonoBehaviour
 {
     private static AudioManager _audioManager;
+    private float _originalVolume;
 
     public static AudioManager Instance
     {
@@ -30,11 +31,12 @@ public class AudioManager : MonoBehaviour
 
     public void ChillOut()
     {
-        _audioSource.volume = 0.7f;
+        _originalVolume = _audioSource.volume;
+        _audioSource.volume = _originalVolume * 0.7f;
     }
 
     public void BlastIt()
     {
-        _audioSource.volume = 1.0f;
+        _audioSource.volume = _originalVolume;
     }
 }
