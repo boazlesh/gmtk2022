@@ -90,17 +90,29 @@ namespace Assets.Scripts
 
             if (!_redDieRollWindow.IsBust())
             {
-                actionInstances.Add(FaceColor.Red, new ActionInstance { Action = _redActionBlock.GetAction(), Potency = _redDieRollWindow.GetSum() });
+                var actionInstance = ScriptableObject.CreateInstance<ActionInstance>();
+                actionInstance.Action = _redActionBlock.GetAction();
+                actionInstance.Potency = _redDieRollWindow.GetSum();
+
+                actionInstances.Add(FaceColor.Red, actionInstance);
             }
 
             if (!_greenDieRollWindow.IsBust())
             {
-                actionInstances.Add(FaceColor.Green, new ActionInstance { Action = _greenActionBlock.GetAction(), Potency = _greenDieRollWindow.GetSum() });
+                var actionInstance = ScriptableObject.CreateInstance<ActionInstance>();
+                actionInstance.Action = _greenActionBlock.GetAction();
+                actionInstance.Potency = _greenDieRollWindow.GetSum();
+
+                actionInstances.Add(FaceColor.Green, actionInstance);
             }
 
             if (!_blueDieRollWindow.IsBust())
             {
-                actionInstances.Add(FaceColor.Blue, new ActionInstance { Action = _blueActionBlock.GetAction(), Potency = _blueDieRollWindow.GetSum() });
+                var actionInstance = ScriptableObject.CreateInstance<ActionInstance>();
+                actionInstance.Action = _blueActionBlock.GetAction();
+                actionInstance.Potency = _blueDieRollWindow.GetSum();
+
+                actionInstances.Add(FaceColor.Blue, actionInstance);
             }
 
             _animator.SetTrigger("End");
