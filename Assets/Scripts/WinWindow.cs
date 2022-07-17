@@ -10,6 +10,12 @@ public class WinWindow : MonoBehaviour
     {
         FindObjectOfType<CubeGuyLogic>().enabled = false;
 
+        var projectiles = FindObjectsOfType<Projectile>();
+        foreach (var projectile in projectiles)
+        {
+            Destroy(projectile);
+        }
+
         StartCoroutine(NextSceneCoroutine());
     }
 
