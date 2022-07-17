@@ -16,3 +16,5 @@ MonoBehaviour:
   _actionType: 3
   _projectilePrefab: {fileID: 6481837373300218226, guid: 66b23f92f08bf084d8c771c0101d5ba6, type: 3}
   _heal: 0
+  _displayName: Sword
+  _text: Deal melee damage

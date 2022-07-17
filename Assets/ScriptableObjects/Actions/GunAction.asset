@@ -16,3 +16,5 @@ MonoBehaviour:
   _actionType: 1
   _projectilePrefab: {fileID: 6481837373300218226, guid: b63963bb80b8b4e4692ed49ad13474e1, type: 3}
   _heal: 0
+  _displayName: Gun
+  _text: The basic gun

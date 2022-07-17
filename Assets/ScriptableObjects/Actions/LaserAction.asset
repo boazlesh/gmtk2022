@@ -16,3 +16,5 @@ MonoBehaviour:
   _actionType: 2
   _projectilePrefab: {fileID: 6481837373300218226, guid: dba111bd42bcc6f40938b60f179b634a, type: 3}
   _heal: 0
+  _displayName: Laser
+  _text: Shoot quick pulses

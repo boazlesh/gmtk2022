@@ -16,3 +16,5 @@ MonoBehaviour:
   _actionType: 5
   _projectilePrefab: {fileID: 6481837373300218226, guid: 578ca148b3e741840bd05ae24204844c, type: 3}
   _heal: 0
+  _displayName: Wide Sword
+  _text: Deal wide melee damage

@@ -18,16 +18,7 @@ public class PauseMenu : MonoBehaviour
     {
         _input = new Input();
         _input.BattleActionMap.Pause.performed += _ => OnPausePerformed();
-    }
-
-    private void OnEnable()
-    {
         _input.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _input.Disable();
     }
 
     public static void RestartLevel()

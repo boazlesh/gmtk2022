@@ -12,5 +12,9 @@ namespace Assets.Scripts
         [SerializeField] public Projectile _projectilePrefab;
 
         [SerializeField] public bool _heal;
+
+        [SerializeField] public string _displayName;
+
+        [SerializeField] public string _text;
     }
 }
