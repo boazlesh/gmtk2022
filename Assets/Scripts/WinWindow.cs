@@ -1,4 +1,5 @@
-﻿using Assets.Scripts;
+﻿using Assets;
+using Assets.Scripts;
 using System.Collections;
 using UnityEngine;
 
@@ -8,12 +9,22 @@ public class WinWindow : MonoBehaviour
 
     private void Awake()
     {
-        FindObjectOfType<CubeGuyLogic>().enabled = false;
+        CubeGuyLogic player = FindObjectOfType<CubeGuyLogic>();
+        if (player != null)
+        {
+            player.enabled = false;
+        }
 
         var projectiles = FindObjectsOfType<Projectile>();
         foreach (var projectile in projectiles)
         {
             Destroy(projectile);
+        }
+
+        CustomGauge customGauge = FindObjectOfType<CustomGauge>();
+        if (customGauge != null)
+        {
+            customGauge.enabled = false;
         }
 
         StartCoroutine(NextSceneCoroutine());
