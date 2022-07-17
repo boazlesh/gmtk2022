@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PigletRectyActionInstance
   m_EditorClassIdentifier: 
   Action: {fileID: 11400000, guid: d119c269b3cc13142bb650ffbf8b4259, type: 2}
-  Potency: 2
+  Potency: 5
