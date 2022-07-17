@@ -16,3 +16,5 @@ MonoBehaviour:
   _actionType: 6
   _projectilePrefab: {fileID: 6481837373300218226, guid: 64fc5f1fb8e9ffc47af188c0116db313, type: 3}
   _heal: 0
+  _displayName: Shockwave
+  _text: Shoot piercing waves

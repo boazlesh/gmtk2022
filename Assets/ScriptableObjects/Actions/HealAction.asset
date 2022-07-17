@@ -16,3 +16,5 @@ MonoBehaviour:
   _actionType: 4
   _projectilePrefab: {fileID: 6481837373300218226, guid: 8422c3f809d80a74592540adafbc7bbf, type: 3}
   _heal: 1
+  _displayName: Heal
+  _text: A basic heal
