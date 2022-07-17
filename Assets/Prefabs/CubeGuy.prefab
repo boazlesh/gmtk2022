@@ -494,6 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 20
   _healthDisplay: {fileID: 0}
+  _audioClipHurt: {fileID: 8300000, guid: e65c60998820c56489cd2d2aef896ce1, type: 3}
 --- !u!1 &3463734516801210290
 GameObject:
   m_ObjectHideFlags: 0

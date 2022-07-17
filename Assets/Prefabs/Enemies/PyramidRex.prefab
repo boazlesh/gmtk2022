@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 7
   _healthDisplay: {fileID: 329516657981671898}
+  _audioClipHurt: {fileID: 8300000, guid: 8d9b568890f84bf43bd9458d147ec8d3, type: 3}
 --- !u!61 &1641390853882836887
 BoxCollider2D:
   m_ObjectHideFlags: 0

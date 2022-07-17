@@ -19,13 +19,16 @@ namespace Assets
         private Board _board;
         private bool _isAlive = true;
         private bool _isTurnActive = true;
+        private HealthComponent _healthComponent;
 
         private void Awake()
         {
             _board = FindObjectOfType<Board>();
             _player = FindObjectOfType<CubeGuyLogic>();
 
-            transform.GetComponent<HealthComponent>().OnDied += OnDied;
+            _healthComponent = transform.GetComponent<HealthComponent>();
+            _healthComponent.OnDied += OnDied;
+            _healthComponent.OnHurt += OnHurt;
         }
 
         private void OnValidate()
@@ -193,6 +196,27 @@ namespace Assets
             AudioClipOneShotPlayer.SpawnOneShot(_audioClipDeath);
 
             Destroy(gameObject);
+        }
+
+        private void OnHurt()
+        {
+            StartCoroutine(HurtAnimationCoroutine());
+        }
+
+        private IEnumerator HurtAnimationCoroutine()
+        {
+            var originalPos = _spriteRenderer.transform.parent.localPosition;
+            _spriteRenderer.transform.parent.localPosition = new Vector3(originalPos.x, originalPos.y + 0.1f, originalPos.z);
+
+            var originalColor = _spriteRenderer.color;
+            _spriteRenderer.color = Color.Lerp(originalColor, Color.red, 0.1f);
+
+            AudioClipOneShotPlayer.SpawnOneShot(_healthComponent._audioClipHurt);
+
+            yield return new WaitForSeconds(0.1f);
+
+            _spriteRenderer.transform.parent.localPosition = originalPos;
+            _spriteRenderer.color = originalColor;
         }
     }
 }
