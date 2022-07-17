@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class WinWindow : MonoBehaviour
 {
-    [SerializeField] private float _delay;
     [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _description;
@@ -53,8 +52,6 @@ public class WinWindow : MonoBehaviour
 
     private IEnumerator NextSceneCoroutine()
     {
-        yield return new WaitForSecondsRealtime(_delay);
-
         var levelLoader = FindObjectOfType<LevelLoader>();
 
         if (levelLoader == null)
