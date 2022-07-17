@@ -83,14 +83,11 @@
     <Compile Include="Assets\Scripts\HealthComponent.cs" />
     <Compile Include="Assets\Scripts\EnemyLogic.cs" />
     <Compile Include="Assets\Scripts\Utils\AudioClipOneShotPlayer.cs" />
-    <Compile Include="Assets\Scripts\ActionInstance.cs" />
-    <Compile Include="Assets\Scripts\ActionModel.cs" />
-    <Compile Include="Assets\Scripts\ActionType.cs" />
-    <Compile Include="Assets\Scripts\WinWindow.cs" />
     <Compile Include="Assets\CustomGauge.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\Instructions.cs" />
     <Compile Include="Assets\Scripts\PlayerSide.cs" />
+    <Compile Include="Assets\Scripts\WinWindow.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

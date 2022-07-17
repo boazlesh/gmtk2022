@@ -116,7 +116,7 @@ namespace Assets.Scripts
             }
 
             _animator.SetTrigger("End");
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
 
             gameObject.SetActive(false);
 
