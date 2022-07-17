@@ -23,6 +23,8 @@ namespace Assets.Scripts
         [SerializeField] private TextMeshProUGUI _diceLeftText;
         [SerializeField] private Button _submitButton;
 
+        [SerializeField] private Animator _animator;
+
         private Input _input;
         private DieRollWindow _activeDieRollWindow;
         private int _diceLeft;
@@ -60,7 +62,7 @@ namespace Assets.Scripts
         public IEnumerator SelectActionsRoutine()
         {
             gameObject.SetActive(true);
-
+            
             Input.Enable();
 
             PauseUnpauseAllProjectilesThxbby(pauseOrUnpause: true);
@@ -99,6 +101,9 @@ namespace Assets.Scripts
             }
 
             yield return actionInstances;
+
+            _animator.SetTrigger("End");
+            yield return new WaitForSeconds(1f);
 
             gameObject.SetActive(false);
 
