@@ -71,8 +71,6 @@ namespace Assets.Scripts
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("Collided!");
-
             if (_isEnemy)
             {
                 CubeGuyLogic player = collision.transform.GetComponentInParent<CubeGuyLogic>();
