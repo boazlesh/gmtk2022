@@ -494,6 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 20
   _healthDisplay: {fileID: 0}
+  _audioClipHurt: {fileID: 8300000, guid: e65c60998820c56489cd2d2aef896ce1, type: 3}
 --- !u!1 &3463734516801210290
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,10 +567,10 @@ BoxCollider2D:
   m_Offset: {x: -0.057457685, y: -0.033798665}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0

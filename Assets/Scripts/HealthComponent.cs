@@ -10,8 +10,11 @@ public class HealthComponent : MonoBehaviour
 
     [SerializeField] private int _maxHealth;
     [SerializeField] private HealthDisplay _healthDisplay;
+    [SerializeField] public AudioClip _audioClipHurt;
 
+    private SpriteRenderer _spriteRenderer;
     private int _currentHealth;
+
     public int CurrentHealth
     {
         get
@@ -23,6 +26,11 @@ public class HealthComponent : MonoBehaviour
             _currentHealth = value;
             _healthDisplay?.SetText(_currentHealth);
         }
+    }
+
+    private void Awake()
+    {
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()

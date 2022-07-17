@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: LaserAction
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: 530f455d4a79ed8449e1296f180c66be, type: 3}
-  _actionType: 1
-  _projectilePrefab: {fileID: 0}
+  _actionType: 2
+  _projectilePrefab: {fileID: 6481837373300218226, guid: dba111bd42bcc6f40938b60f179b634a, type: 3}
+  _heal: 0

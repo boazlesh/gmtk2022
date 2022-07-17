@@ -21,6 +21,8 @@ public class CubeGuyLogic : MonoBehaviour
 
     private AudioSource _audioSource;
     private Animator _animator;
+    private HealthComponent _healthComponent;
+    private SpriteRenderer _eyesSpriteRenderer;
 
     public event Action OnCustomScreenEnter;
     public event Action OnCustomScreenExit;
@@ -38,8 +40,10 @@ public class CubeGuyLogic : MonoBehaviour
 
     public void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
+        _audioSource = transform.GetComponent<AudioSource>();
         _animator = transform.GetComponentInChildren<Animator>();
+        _healthComponent = transform.GetComponent<HealthComponent>();
+        _eyesSpriteRenderer = transform.Find("SpritesHolder").Find("EyesHolder").GetComponent<SpriteRenderer>();
 
         ColorFaces();
 
@@ -56,6 +60,8 @@ public class CubeGuyLogic : MonoBehaviour
 
         PauseMenu.OnGamePause += () => _input.Disable();
         PauseMenu.OnGameResumed += () => _input.Enable();
+
+        _healthComponent.OnHurt += OnHurt;
     }
 
     private IEnumerator Start()
@@ -127,6 +133,11 @@ public class CubeGuyLogic : MonoBehaviour
 
     private void Move(Direction direction)
     {
+        if (_isInCustomScreen) // somehow
+        {
+            return;
+        }
+
         if (_isMoveAnimationPlaying)
         {
             _bufferedMoveDirection = direction;
@@ -309,5 +320,22 @@ public class CubeGuyLogic : MonoBehaviour
             spriteRenderer.material.color = newColor;
             yield return null;
         }
+    }
+
+    private void OnHurt()
+    {
+        StartCoroutine(HurtAnimationCoroutine());
+    }
+
+    private IEnumerator HurtAnimationCoroutine()
+    {
+        var originalColor = _eyesSpriteRenderer.color;
+        _eyesSpriteRenderer.color = Color.Lerp(originalColor, Color.red, 0.5f);
+
+        AudioClipOneShotPlayer.SpawnOneShot(_healthComponent._audioClipHurt);
+
+        yield return new WaitForSeconds(0.1f);
+
+        _eyesSpriteRenderer.color = originalColor;
     }
 }

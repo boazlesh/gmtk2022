@@ -19,13 +19,17 @@ namespace Assets
         private Board _board;
         private bool _isAlive = true;
         private bool _isTurnActive = true;
+        private HealthComponent _healthComponent;
+        private Direction? _previousMovement;
 
         private void Awake()
         {
             _board = FindObjectOfType<Board>();
             _player = FindObjectOfType<CubeGuyLogic>();
 
-            transform.GetComponent<HealthComponent>().OnDied += OnDied;
+            _healthComponent = transform.GetComponent<HealthComponent>();
+            _healthComponent.OnDied += OnDied;
+            _healthComponent.OnHurt += OnHurt;
         }
 
         private void OnValidate()
@@ -52,7 +56,7 @@ namespace Assets
             {
                 yield return new WaitUntil(() => _isTurnActive);
                 yield return new WaitForSeconds(_actionCooldownSeconds);
-                
+
                 if (!_isTurnActive)
                 {
                     continue;
@@ -67,10 +71,14 @@ namespace Assets
 
                     if (movementResult.Value.DidMove)
                     {
+                        _previousMovement = movementDirection;
+
                         // If moved, don't also try to perform an action
                         continue;
                     }
                 }
+
+                _previousMovement = null;
 
                 yield return PerformActionRoutine();
             }
@@ -81,6 +89,28 @@ namespace Assets
             switch (_actionInstance.Action._actionType)
             {
                 case ActionType.Laser:
+                    if (_boardPosition.y == _board._enemyMatrixEnd.y)
+                    {
+                        if (_previousMovement.HasValue)
+                        {
+                            return null;
+                        }
+
+                        return Direction.Up;
+                    }
+                    else if (_boardPosition.y == _board._enemyMatrixStart.y)
+                    {
+                        if (_previousMovement.HasValue)
+                        {
+                            return null;
+                        }
+
+                        return Direction.Down;
+                    }
+                    else
+                    {
+                        return _previousMovement ?? Direction.Down;
+                    }
                 case ActionType.Cannon:
                     {
                         if (_boardPosition.y > _player._boardPosition.y)
@@ -193,6 +223,27 @@ namespace Assets
             AudioClipOneShotPlayer.SpawnOneShot(_audioClipDeath);
 
             Destroy(gameObject);
+        }
+
+        private void OnHurt()
+        {
+            StartCoroutine(HurtAnimationCoroutine());
+        }
+
+        private IEnumerator HurtAnimationCoroutine()
+        {
+            var originalPos = _spriteRenderer.transform.parent.localPosition;
+            _spriteRenderer.transform.parent.localPosition = new Vector3(originalPos.x, originalPos.y + 0.15f, originalPos.z);
+
+            var originalColor = _spriteRenderer.color;
+            _spriteRenderer.color = Color.Lerp(originalColor, Color.red, 0.25f);
+
+            AudioClipOneShotPlayer.SpawnOneShot(_healthComponent._audioClipHurt);
+
+            yield return new WaitForSeconds(0.15f);
+
+            _spriteRenderer.transform.parent.localPosition = originalPos;
+            _spriteRenderer.color = originalColor;
         }
     }
 }
