@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PyramidRexActionInstance
   m_EditorClassIdentifier: 
   Action: {fileID: 11400000, guid: e6bcc0022238a7744980d86d2d42c1ce, type: 2}
-  Potency: 5
+  Potency: 2
