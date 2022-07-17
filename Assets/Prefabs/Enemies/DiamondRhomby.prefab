@@ -55,7 +55,6 @@ MonoBehaviour:
   _audioClipDeath: {fileID: 8300000, guid: 120a790c41712934aaa4ee89d49c4f8a, type: 3}
   _spriteRenderer: {fileID: 8942878283430200323}
   _fallbackMovement: 0
-  _winWindowPrefab: {fileID: 3576889971130962229, guid: dab211ee70e788f44bb2100809dd60e7, type: 3}
 --- !u!114 &5897970703961460011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40a5eebc36b90c4aba4d5d0ff87a456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 18
+  _maxHealth: 10
   _healthDisplay: {fileID: 8479182284438784473}
   _audioClipHurt: {fileID: 8300000, guid: 8d9b568890f84bf43bd9458d147ec8d3, type: 3}
 --- !u!61 &8342024941792315287
