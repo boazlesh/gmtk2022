@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -9,6 +8,7 @@ namespace Assets.Scripts
         [SerializeField] private float _ttl;
         [SerializeField] private bool _canKillOtherProjectiles;
         [SerializeField] private AudioClip _audioClipSpawn;
+        [SerializeField] private bool _doesBreakOnImpact = true;
 
         private static AudioClip _audioClipKillOtherProjectile;
 
@@ -79,7 +79,10 @@ namespace Assets.Scripts
                 {
                     player.GetComponent<HealthComponent>().TakeDamage(_potency);
 
-                    _isAlive = false;
+                    if (_doesBreakOnImpact)
+                    {
+                        _isAlive = false;
+                    }
                 }
             }
             else
@@ -90,7 +93,10 @@ namespace Assets.Scripts
                 {
                     enemy.GetComponent<HealthComponent>().TakeDamage(_potency);
 
-                    _isAlive = false;
+                    if (_doesBreakOnImpact)
+                    {
+                        _isAlive = false;
+                    }
                 }
             }
 
