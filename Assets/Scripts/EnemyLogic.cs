@@ -206,14 +206,14 @@ namespace Assets
         private IEnumerator HurtAnimationCoroutine()
         {
             var originalPos = _spriteRenderer.transform.parent.localPosition;
-            _spriteRenderer.transform.parent.localPosition = new Vector3(originalPos.x, originalPos.y + 0.1f, originalPos.z);
+            _spriteRenderer.transform.parent.localPosition = new Vector3(originalPos.x, originalPos.y + 0.15f, originalPos.z);
 
             var originalColor = _spriteRenderer.color;
-            _spriteRenderer.color = Color.Lerp(originalColor, Color.red, 0.1f);
+            _spriteRenderer.color = Color.Lerp(originalColor, Color.red, 0.25f);
 
             AudioClipOneShotPlayer.SpawnOneShot(_healthComponent._audioClipHurt);
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.15f);
 
             _spriteRenderer.transform.parent.localPosition = originalPos;
             _spriteRenderer.color = originalColor;
