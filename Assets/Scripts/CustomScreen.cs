@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -116,9 +117,22 @@ namespace Assets.Scripts
 
         private IEnumerator SetActions()
         {
-            yield return _redActionBlock.SetButCool(FaceColor.Red, _actionLibrary[0], 0);
-            yield return _greenActionBlock.SetButCool(FaceColor.Green, _actionLibrary[1], 1);
-            yield return _blueActionBlock.SetButCool(FaceColor.Blue, _actionLibrary[2], 2);
+            var availableActions = _actionLibrary.ToList();
+
+            int randomIndex = Random.Range(0, availableActions.Count);
+            var randomAbility = availableActions[randomIndex];
+            availableActions.RemoveAt(randomIndex);
+            yield return _redActionBlock.SetButCool(FaceColor.Red, randomAbility, pitchIndex: 0);
+
+            randomIndex = Random.Range(0, availableActions.Count);
+            randomAbility = availableActions[randomIndex];
+            availableActions.RemoveAt(randomIndex);
+            yield return _greenActionBlock.SetButCool(FaceColor.Green, randomAbility, pitchIndex: 1);
+
+            randomIndex = Random.Range(0, availableActions.Count);
+            randomAbility = availableActions[randomIndex];
+            availableActions.RemoveAt(randomIndex);
+            yield return _blueActionBlock.SetButCool(FaceColor.Blue, randomAbility, pitchIndex: 2);
         }
 
 
