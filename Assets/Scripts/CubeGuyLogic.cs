@@ -117,6 +117,14 @@ public class CubeGuyLogic : MonoBehaviour
         _playerHud.UpdateActions(_actionInstances);
     }
 
+    [ContextMenu("Color All Faces")]
+    private void ColorFacesDebug()
+    {
+        _spriteTop.color = _faceColorMapping.GetColorFromFaceColor(_faceTop, false);
+        _spriteFront.color = _faceColorMapping.GetColorFromFaceColor(_faceFront, false);
+        _spriteSide.color = _faceColorMapping.GetColorFromFaceColor(_faceSide, false);
+    }
+
     private void Move(Direction direction)
     {
         if (_isMoveAnimationPlaying)
