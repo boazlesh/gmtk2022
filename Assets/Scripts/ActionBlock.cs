@@ -18,7 +18,9 @@ public class ActionBlock : MonoBehaviour
     {
         SetFaceColor(_faceColor);
 
-        SetAction(new ActionModel { _actionType = ActionType.Cannon});
+        var actionModel = ScriptableObject.CreateInstance<ActionModel>();
+        actionModel._actionType = ActionType.Cannon;
+        SetAction(actionModel);
     }
 
     public void SetFaceColor(FaceColor faceColor, bool mute = false)
