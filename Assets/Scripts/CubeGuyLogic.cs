@@ -67,6 +67,19 @@ public class CubeGuyLogic : MonoBehaviour
         _healthComponent.OnDied += OnDie;
     }
 
+    private void OnValidate()
+    {
+        _board = FindObjectOfType<Board>();
+
+        try
+        {
+            transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
+        }
+        catch
+        {
+        }
+    }
+
     public void Win()
     {
         Instantiate(_winWindowPrefab);
