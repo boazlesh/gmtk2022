@@ -384,6 +384,7 @@ MonoBehaviour:
   _playerHud: {fileID: 0}
   _projectilePosition: {fileID: 6524509414299750545}
   _winWindowPrefab: {fileID: 3576889971130962229, guid: dab211ee70e788f44bb2100809dd60e7, type: 3}
+  _loseWindowPrefab: {fileID: 753296321012015024, guid: 7e244ddc6c436fc44b54b02b06794bef, type: 3}
   _boardPosition: {x: 0, y: 0}
 --- !u!82 &5158299263869599540
 AudioSource:
