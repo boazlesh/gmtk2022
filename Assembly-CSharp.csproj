@@ -84,6 +84,8 @@
     <Compile Include="Assets\Scripts\EnemyLogic.cs" />
     <Compile Include="Assets\Scripts\Utils\AudioClipOneShotPlayer.cs" />
     <Compile Include="Assets\CustomGauge.cs" />
+    <Compile Include="Assets\Scripts\LevelLoader.cs" />
+    <Compile Include="Assets\Scripts\Instructions.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

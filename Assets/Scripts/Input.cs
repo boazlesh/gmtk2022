@@ -73,6 +73,14 @@ public class @Input : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Continue"",
+                    ""type"": ""Button"",
+                    ""id"": ""16a3a7ad-cc2a-4ad5-ae49-ca83f2556eae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -284,6 +292,28 @@ public class @Input : IInputActionCollection, IDisposable
                     ""action"": ""UseTopAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7cd70f15-12bb-4dbe-b0e6-0ba4484ce2fa"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Continue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""946899f7-27be-45c4-b560-5278184ce63e"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Continue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -299,6 +329,7 @@ public class @Input : IInputActionCollection, IDisposable
         m_BattleActionMap_Pause = m_BattleActionMap.FindAction("Pause", throwIfNotFound: true);
         m_BattleActionMap_CustomScreen = m_BattleActionMap.FindAction("CustomScreen", throwIfNotFound: true);
         m_BattleActionMap_UseTopAbility = m_BattleActionMap.FindAction("UseTopAbility", throwIfNotFound: true);
+        m_BattleActionMap_Continue = m_BattleActionMap.FindAction("Continue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -355,6 +386,7 @@ public class @Input : IInputActionCollection, IDisposable
     private readonly InputAction m_BattleActionMap_Pause;
     private readonly InputAction m_BattleActionMap_CustomScreen;
     private readonly InputAction m_BattleActionMap_UseTopAbility;
+    private readonly InputAction m_BattleActionMap_Continue;
     public struct BattleActionMapActions
     {
         private @Input m_Wrapper;
@@ -366,6 +398,7 @@ public class @Input : IInputActionCollection, IDisposable
         public InputAction @Pause => m_Wrapper.m_BattleActionMap_Pause;
         public InputAction @CustomScreen => m_Wrapper.m_BattleActionMap_CustomScreen;
         public InputAction @UseTopAbility => m_Wrapper.m_BattleActionMap_UseTopAbility;
+        public InputAction @Continue => m_Wrapper.m_BattleActionMap_Continue;
         public InputActionMap Get() { return m_Wrapper.m_BattleActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -396,6 +429,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @UseTopAbility.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnUseTopAbility;
                 @UseTopAbility.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnUseTopAbility;
                 @UseTopAbility.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnUseTopAbility;
+                @Continue.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnContinue;
+                @Continue.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnContinue;
+                @Continue.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnContinue;
             }
             m_Wrapper.m_BattleActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -421,6 +457,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @UseTopAbility.started += instance.OnUseTopAbility;
                 @UseTopAbility.performed += instance.OnUseTopAbility;
                 @UseTopAbility.canceled += instance.OnUseTopAbility;
+                @Continue.started += instance.OnContinue;
+                @Continue.performed += instance.OnContinue;
+                @Continue.canceled += instance.OnContinue;
             }
         }
     }
@@ -434,5 +473,6 @@ public class @Input : IInputActionCollection, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnCustomScreen(InputAction.CallbackContext context);
         void OnUseTopAbility(InputAction.CallbackContext context);
+        void OnContinue(InputAction.CallbackContext context);
     }
 }

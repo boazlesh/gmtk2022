@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.Utils;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -35,7 +36,14 @@ namespace Assets
         private void OnValidate()
         {
             _board = FindObjectOfType<Board>();
-            transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
+
+            try
+            {
+                transform.localPosition = _board.BoardPositionToWorldPosition(_boardPosition);
+            }
+            catch
+            {
+            }
         }
 
         private void Start()
