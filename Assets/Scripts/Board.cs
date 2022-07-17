@@ -6,10 +6,10 @@ public class Board : MonoBehaviour
 
     private readonly GameObject[,] _matrix = new GameObject[6, 3];
 
-    private readonly Vector2Int _playerMatrixStart = Vector2Int.zero;
-    private readonly Vector2Int _playerMatrixEnd = new Vector2Int(2, 2);
-    private readonly Vector2Int _enemyMatrixStart = new Vector2Int(3, 0);
-    private readonly Vector2Int _enemyMatrixEnd = new Vector2Int(5, 5);
+    public readonly Vector2Int _playerMatrixStart = Vector2Int.zero;
+    public readonly Vector2Int _playerMatrixEnd = new Vector2Int(2, 2);
+    public readonly Vector2Int _enemyMatrixStart = new Vector2Int(3, 0);
+    public readonly Vector2Int _enemyMatrixEnd = new Vector2Int(5, 2);
 
     public void Place(Vector2Int startingPosition, GameObject gameObject)
     {

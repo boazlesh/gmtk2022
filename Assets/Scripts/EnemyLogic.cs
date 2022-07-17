@@ -20,6 +20,7 @@ namespace Assets
         private bool _isAlive = true;
         private bool _isTurnActive = true;
         private HealthComponent _healthComponent;
+        private Direction? _previousMovement;
 
         private void Awake()
         {
@@ -70,8 +71,14 @@ namespace Assets
 
                     if (movementResult.Value.DidMove)
                     {
+                        _previousMovement = movementDirection;
+
                         // If moved, don't also try to perform an action
                         continue;
+                    }
+                    else
+                    {
+                        _previousMovement = null;
                     }
                 }
 
@@ -84,6 +91,18 @@ namespace Assets
             switch (_actionInstance.Action._actionType)
             {
                 case ActionType.Laser:
+                    if (_boardPosition.y == _board._enemyMatrixEnd.y)
+                    {
+                        return Direction.Up;
+                    }
+                    else if (_boardPosition.y == _board._enemyMatrixStart.y)
+                    {
+                        return Direction.Down;
+                    }
+                    else
+                    {
+                        return _previousMovement ?? Direction.Down;
+                    }
                 case ActionType.Cannon:
                     {
                         if (_boardPosition.y > _player._boardPosition.y)
