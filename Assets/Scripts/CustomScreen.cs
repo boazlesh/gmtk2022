@@ -71,10 +71,10 @@ namespace Assets.Scripts
 
             SetDiceLeft(5);
 
-            yield return SetActions();
-
             SetSubmitInteractable(false);
             SetDiceRollsInteractable(false);
+
+            yield return SetActions();
 
             yield return RollDiceRoutine();
 
