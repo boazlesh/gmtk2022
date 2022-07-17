@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -72,9 +73,11 @@ namespace Assets.Scripts
             AudioManager.Instance.ChillOut();
 
             SetDiceLeft(5);
-            SetActions();
+
             SetSubmitInteractable(false);
             SetDiceRollsInteractable(false);
+
+            yield return SetActions();
 
             yield return RollDiceRoutine();
 
@@ -117,20 +120,30 @@ namespace Assets.Scripts
             AudioManager.Instance.BlastIt();
         }
 
-        private void SetActions()
+        private IEnumerator SetActions()
         {
-            _redActionBlock.SetFaceColor(FaceColor.Red);
-            _redActionBlock.SetAction(_actionLibrary[0]);
-            _redActionBlock.SetText(null);
+            _redActionBlock.ResetAction();
+            _greenActionBlock.ResetAction();
+            _blueActionBlock.ResetAction();
 
-            _greenActionBlock.SetFaceColor(FaceColor.Green);
-            _greenActionBlock.SetAction(_actionLibrary[1]);
-            _greenActionBlock.SetText(null);
+            var availableActions = _actionLibrary.ToList();
 
-            _blueActionBlock.SetFaceColor(FaceColor.Blue);
-            _blueActionBlock.SetAction(_actionLibrary[2]);
-            _blueActionBlock.SetText(null);
+            int randomIndex = Random.Range(0, availableActions.Count);
+            var randomAbility = availableActions[randomIndex];
+            availableActions.RemoveAt(randomIndex);
+            yield return _redActionBlock.SetButCool(FaceColor.Red, randomAbility, pitchIndex: 0);
+
+            randomIndex = Random.Range(0, availableActions.Count);
+            randomAbility = availableActions[randomIndex];
+            availableActions.RemoveAt(randomIndex);
+            yield return _greenActionBlock.SetButCool(FaceColor.Green, randomAbility, pitchIndex: 1);
+
+            randomIndex = Random.Range(0, availableActions.Count);
+            randomAbility = availableActions[randomIndex];
+            availableActions.RemoveAt(randomIndex);
+            yield return _blueActionBlock.SetButCool(FaceColor.Blue, randomAbility, pitchIndex: 2);
         }
+
 
         public void SetDiceLeft(int diceLeft)
         {

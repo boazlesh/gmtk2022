@@ -170,7 +170,7 @@ RectTransform:
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3, y: 0.02}
-  m_AnchorMax: {x: 0.7, y: 0.12}
+  m_AnchorMax: {x: 0.7, y: 0.1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -344,8 +344,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actionLibrary:
   - {fileID: 11400000, guid: 5b88ce20bbfc9704ca8134015acd40c7, type: 2}
+  - {fileID: 11400000, guid: b18e2c4af4695b840b1a9041036ec1f6, type: 2}
   - {fileID: 11400000, guid: 0c292bdeeb7f23648930f708d77fbd6e, type: 2}
+  - {fileID: 11400000, guid: df5c97b6015481e47b54f1cd5a4536e1, type: 2}
   - {fileID: 11400000, guid: 59a9795f8d4b5834ba743ba145ce41cb, type: 2}
+  - {fileID: 11400000, guid: d119c269b3cc13142bb650ffbf8b4259, type: 2}
   _redActionBlock: {fileID: 2269533450968216667}
   _greenActionBlock: {fileID: 7625827107325278944}
   _blueActionBlock: {fileID: 7625827107263103559}

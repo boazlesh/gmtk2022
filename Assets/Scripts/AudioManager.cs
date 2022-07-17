@@ -31,12 +31,10 @@ public class AudioManager : MonoBehaviour
     public void ChillOut()
     {
         _audioSource.volume = 0.7f;
-        _audioSource.pitch = 0.9f;
     }
 
     public void BlastIt()
     {
         _audioSource.volume = 1.0f;
-        _audioSource.pitch = 1.0f;
     }
 }
