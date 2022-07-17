@@ -6,6 +6,7 @@
         Gun,
         Laser,
         Sword,
-        Heal
+        Heal,
+        WideSword
     }
 }
