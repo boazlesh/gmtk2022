@@ -17,7 +17,11 @@ public class WinWindow : MonoBehaviour
 
     private void Awake()
     {
-        FindObjectOfType<CubeGuyLogic>().enabled = false;
+        CubeGuyLogic player = FindObjectOfType<CubeGuyLogic>();
+        if (player != null)
+        {
+            player.enabled = false;
+        }
 
         var projectiles = FindObjectsOfType<Projectile>();
         foreach (var projectile in projectiles)
@@ -25,8 +29,13 @@ public class WinWindow : MonoBehaviour
             Destroy(projectile);
         }
 
-        var reward = FindObjectOfType<Reward>();
+        CustomGauge customGauge = FindObjectOfType<CustomGauge>();
+        if (customGauge != null)
+        {
+            customGauge.enabled = false;
+        }
 
+        var reward = FindObjectOfType<Reward>();
         if (reward != null)
         {
             _rewardWindow.gameObject.SetActive(true);
