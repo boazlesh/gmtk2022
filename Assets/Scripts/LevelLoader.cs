@@ -18,7 +18,7 @@ namespace Assets.Scripts
         {
             _animator.SetTrigger("Start");
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(_animationTime);
 
             SceneManager.LoadScene(levelIndex);
         }
