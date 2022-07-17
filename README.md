@@ -1,4 +1,4 @@
-# GMTK 2022 - "UNTITLED BATTLE NETWORK BLACKJACK GAME"
+# GMTK 2022 - "Digidice - Lost in Space"
 
 You are a die. the enemies are dice. You shoot dice. You pick attacks using dice. Everything is dice.
 
