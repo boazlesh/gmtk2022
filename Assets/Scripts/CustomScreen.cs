@@ -67,6 +67,8 @@ namespace Assets.Scripts
 
             _isSubmitted = false;
 
+            AudioManager.Instance.ChillOut();
+
             SetDiceLeft(5);
             SetActions();
             SetSubmitInteractable(false);
@@ -106,6 +108,8 @@ namespace Assets.Scripts
             _activeDieRollWindow = null;
 
             PauseUnpauseAllProjectilesThxbby(pauseOrUnpause: false);
+
+            AudioManager.Instance.BlastIt();
         }
 
         private void SetActions()
