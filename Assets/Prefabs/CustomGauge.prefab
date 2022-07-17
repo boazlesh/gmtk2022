@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be80c3833febf204d8d4aeca63fe6d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _customGaugeDurationSeconds: 10
+  _customGaugeDurationSeconds: 8
   _slider: {fileID: 1482963306122128640}
   _label: {fileID: 1073231279602199238}
 --- !u!1 &5063734089755280326

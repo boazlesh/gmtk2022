@@ -10,7 +10,7 @@ namespace Assets
     {
         public event Action OnCustomGaugeComplete;
 
-        [SerializeField] private float _customGaugeDurationSeconds = 10f;
+        [SerializeField] private float _customGaugeDurationSeconds = 8f;
         [SerializeField] private Slider _slider;
         [SerializeField] private TextMeshProUGUI _label;
 
