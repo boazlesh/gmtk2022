@@ -240,6 +240,7 @@ public class CubeGuyLogic : MonoBehaviour
             return;
         }
 
+        _isCustomScreenAvailable = false;
         StartCoroutine(EnterCustomScreenRoutine());
     }
 
