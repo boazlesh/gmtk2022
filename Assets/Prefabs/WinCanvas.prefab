@@ -454,4 +454,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d3f5ad12496824388128c594d36e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delay: 2
+  _delay: 1

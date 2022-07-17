@@ -9,7 +9,6 @@ public class WinWindow : MonoBehaviour
     private void Awake()
     {
         FindObjectOfType<CubeGuyLogic>().enabled = false;
-        Time.timeScale = 0f;
 
         StartCoroutine(NextSceneCoroutine());
     }
