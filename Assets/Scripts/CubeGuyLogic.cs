@@ -91,6 +91,8 @@ public class CubeGuyLogic : MonoBehaviour
             enemy._spriteRenderer.material.color = new Color(color.r, color.g, color.b, a: 0);
         }
 
+        yield return new WaitForSeconds(1f);
+
         foreach (EnemyLogic enemy in enemies)
         {
             yield return FadeToRoutine(enemy._spriteRenderer, 1, 1f);
