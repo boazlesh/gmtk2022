@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Assets.Scripts;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class WinWindow : MonoBehaviour
 {
@@ -19,11 +18,13 @@ public class WinWindow : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(_delay);
 
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        var levelLoader = FindObjectOfType<LevelLoader>();
 
-        if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
+        if (levelLoader == null)
         {
-            SceneManager.LoadScene(nextSceneIndex);
+            yield break;
         }
+
+        levelLoader.LoadNextLevel();
     }
 }
