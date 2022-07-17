@@ -2,6 +2,8 @@
 using Assets.Scripts.Utils;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets
@@ -15,6 +17,7 @@ namespace Assets
         [SerializeField] public Animator _animator;
         [SerializeField] public AudioClip _audioClipDeath;
         [SerializeField] public SpriteRenderer _spriteRenderer;
+        [SerializeField] private bool _fallbackMovement;
 
         private CubeGuyLogic _player;
         private Board _board;
@@ -22,6 +25,7 @@ namespace Assets
         private bool _isTurnActive = true;
         private HealthComponent _healthComponent;
         private Direction? _previousMovement;
+        private int _consecutiveSteps = 0;
 
         private void Awake()
         {
@@ -74,17 +78,23 @@ namespace Assets
 
                 if (movementDirection != null)
                 {
+                    var directions = !_fallbackMovement ? new[] { movementDirection.Value } : DirectionHelper.GetAllStartingWith(movementDirection.Value);
+
                     CoroutineResult<MovementResult> movementResult = new CoroutineResult<MovementResult>();
-                    yield return PerformMovementRoutine(movementDirection.Value).GetResult(movementResult);
+                    yield return PerformMovementInFirstAvailableDirection(directions).GetResult(movementResult);
 
                     if (movementResult.Value.DidMove)
                     {
+                        _consecutiveSteps++;
+
                         _previousMovement = movementDirection;
 
                         // If moved, don't also try to perform an action
                         continue;
                     }
                 }
+
+                _consecutiveSteps = 0;
 
                 _previousMovement = null;
 
@@ -153,10 +163,37 @@ namespace Assets
                             return null;
                         }
                     }
+                case ActionType.Shockwave:
+                    {
+                        if (_consecutiveSteps == 2)
+                        {
+                            return null;
+                        }
+
+                        return DirectionHelper.Roll();
+                    }
                 case ActionType.Heal:
                 default:
                     return null;
             }
+        }
+
+        private IEnumerator PerformMovementInFirstAvailableDirection(IEnumerable<Direction> directions)
+        {
+            CoroutineResult<MovementResult> movementResult = new CoroutineResult<MovementResult>();
+
+            foreach (Direction direction in directions)
+            {
+                yield return PerformMovementRoutine(direction).GetResult(movementResult);
+
+                if (movementResult.Value.DidMove)
+                {
+                    yield return movementResult.Value;
+                    yield break;
+                }
+            }
+
+            yield return movementResult.Value;
         }
 
         private IEnumerator PerformMovementRoutine(Direction direction)
