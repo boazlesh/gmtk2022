@@ -997,7 +997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8551036068446952167, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.75
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8551036068446952167, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1214,7 +1214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3233301700392644672, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
       propertyPath: m_fontSize
-      value: 68.95
+      value: 71.05
       objectReference: {fileID: 0}
     - target: {fileID: 3248106614064492036, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1403,7 +1403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3233301700392644672, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
       propertyPath: m_fontSize
-      value: 68.95
+      value: 71.05
       objectReference: {fileID: 0}
     - target: {fileID: 3248106614064492036, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1560,7 +1560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8551036068446952167, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.75
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8551036068446952167, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1745,7 +1745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8551036068446952167, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.75
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8551036068446952167, guid: 340f1f38607e7774c9418290da714b5e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1938,7 +1938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3233301700392644672, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
       propertyPath: m_fontSize
-      value: 68.95
+      value: 71.05
       objectReference: {fileID: 0}
     - target: {fileID: 3248106614064492036, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
       propertyPath: m_AnchorMax.y
