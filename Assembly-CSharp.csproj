@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\ActionModel.cs" />
     <Compile Include="Assets\Scripts\ActionType.cs" />
     <Compile Include="Assets\Scripts\WinWindow.cs" />
+    <Compile Include="Assets\Scripts\WindowLose.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
