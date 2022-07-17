@@ -125,6 +125,11 @@ public class CubeGuyLogic : MonoBehaviour
 
     private void Move(Direction direction)
     {
+        if (_isInCustomScreen) // somehow
+        {
+            return;
+        }
+
         if (_isMoveAnimationPlaying)
         {
             _bufferedMoveDirection = direction;
