@@ -28,13 +28,15 @@ public class ActionBlock : MonoBehaviour
 
     public IEnumerator SetButCool(FaceColor color, ActionModel actionModel, int pitchIndex)
     {
+        yield return new WaitForSeconds(_coolTime / 2);
+
         SetFaceColor(color);
         SetAction(actionModel);
         SetText(null);
 
         AudioClipOneShotPlayer.SpawnOneShot(_powerSelectedClip, 1.0f + (pitchIndex / 10.0f));
 
-        yield return new WaitForSeconds(_coolTime);
+        yield return new WaitForSeconds(_coolTime / 2);
     }
 
     public void SetFaceColor(FaceColor faceColor, bool mute = false)
@@ -51,6 +53,12 @@ public class ActionBlock : MonoBehaviour
         _actionModel = actionModel;
 
         _actionImage.sprite = actionModel._sprite;
+    }
+
+    public void ResetAction()
+    {
+        _actionModel = null;
+        _actionImage.sprite = null;
     }
 
     public void SetText(string text)

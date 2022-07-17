@@ -117,6 +117,10 @@ namespace Assets.Scripts
 
         private IEnumerator SetActions()
         {
+            _redActionBlock.ResetAction();
+            _greenActionBlock.ResetAction();
+            _blueActionBlock.ResetAction();
+
             var availableActions = _actionLibrary.ToList();
 
             int randomIndex = Random.Range(0, availableActions.Count);
