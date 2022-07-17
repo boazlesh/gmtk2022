@@ -20,6 +20,11 @@ namespace Assets
             _label.enabled = false;
         }
 
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+        }
+
         public void RunCustomGauge()
         {
             StartCoroutine(RunCustomGaugeRoutine(_customGaugeDurationSeconds));
