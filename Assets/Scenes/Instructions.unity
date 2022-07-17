@@ -1550,7 +1550,8 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3094307252090236975, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d50f84d8127d064419bdd226ee2c3623, type: 3}
 --- !u!224 &1274715745 stripped
 RectTransform:
