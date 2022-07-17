@@ -13,18 +13,33 @@ namespace Assets.Scripts
         [SerializeField] private ActionModel[] _actionLibrary;
 
         [SerializeField] private ActionBlock _redActionBlock;
-        [SerializeField] private ActionBlock _blueActionBlock;
         [SerializeField] private ActionBlock _greenActionBlock;
+        [SerializeField] private ActionBlock _blueActionBlock;
 
         [SerializeField] private DieRollWindow _redDieRollWindow;
-        [SerializeField] private DieRollWindow _blueDieRollWindow;
         [SerializeField] private DieRollWindow _greenDieRollWindow;
+        [SerializeField] private DieRollWindow _blueDieRollWindow;
 
         [SerializeField] private TextMeshProUGUI _diceLeftText;
         [SerializeField] private Button _submitButton;
 
+        private Input _input;
+        private DieRollWindow _activeDieRollWindow;
         private int _diceLeft;
         private bool _isSubmitted = false;
+
+        private Input Input
+        {
+            get
+            {
+                if (_input == null)
+                {
+                    _input = new Input();
+                }
+
+                return _input;
+            }
+        }
 
         private void Start()
         {
@@ -35,11 +50,18 @@ namespace Assets.Scripts
             _redDieRollWindow.OnRolled += OnDieRolled;
             _greenDieRollWindow.OnRolled += OnDieRolled;
             _blueDieRollWindow.OnRolled += OnDieRolled;
+
+            Input.BattleActionMap.CustomScreen.performed += _ => Submit();
+            Input.BattleActionMap.MoveLeft.performed += _ => MoveLeft();
+            Input.BattleActionMap.MoveRight.performed += _ => MoveRight();
+            Input.BattleActionMap.UseTopAbility.performed += _ => RollMore();
         }
 
         public IEnumerator SelectActionsRoutine()
         {
             gameObject.SetActive(true);
+
+            Input.Enable();
 
             PauseUnpauseAllProjectilesThxbby(pauseOrUnpause: true);
 
@@ -51,6 +73,9 @@ namespace Assets.Scripts
             SetDiceRollsInteractable(false);
 
             yield return RollDiceRoutine();
+
+            _activeDieRollWindow = _redDieRollWindow;
+            _activeDieRollWindow.SetHighlighted(true);
 
             yield return new WaitUntil(() => _isSubmitted);
 
@@ -74,6 +99,11 @@ namespace Assets.Scripts
             yield return actionInstances;
 
             gameObject.SetActive(false);
+
+            Input.Disable();
+
+            _activeDieRollWindow?.SetHighlighted(false);
+            _activeDieRollWindow = null;
 
             PauseUnpauseAllProjectilesThxbby(pauseOrUnpause: false);
         }
@@ -102,6 +132,15 @@ namespace Assets.Scripts
             bool hasDiceLeft = _diceLeft > 0;
 
             SetDiceRollsInteractable(hasDiceLeft);
+
+            if (!hasDiceLeft)
+            {
+                _activeDieRollWindow = null;
+            }
+            else
+            {
+                _activeDieRollWindow?.SetHighlighted(true);
+            }
         }
 
         private IEnumerator RollDiceRoutine()
@@ -115,6 +154,8 @@ namespace Assets.Scripts
         {
             SetSubmitInteractable(false);
             SetDiceRollsInteractable(false);
+
+            _activeDieRollWindow?.SetHighlighted(true);
         }
 
         private void SetSubmitInteractable(bool interactable)
@@ -149,15 +190,80 @@ namespace Assets.Scripts
 
         public void Submit()
         {
+            if (!_submitButton.interactable)
+            {
+                return;
+            }
+
             _isSubmitted = true;
         }
 
-        private static void PauseUnpauseAllProjectilesThxbby(bool pauseOrUnpause)
+        private void PauseUnpauseAllProjectilesThxbby(bool pauseOrUnpause)
         {
             foreach (var x in FindObjectsOfType<Projectile>())
             {
                 x.PausePleaseThanks = pauseOrUnpause;
             }
+        }
+
+        private void MoveLeft()
+        {
+            if (_activeDieRollWindow == null)
+            {
+                return;
+            }
+
+            _activeDieRollWindow.SetHighlighted(false);
+
+            if (_activeDieRollWindow == _greenDieRollWindow)
+            {
+                _activeDieRollWindow = _redDieRollWindow;
+            }
+            else if (_activeDieRollWindow == _blueDieRollWindow)
+            {
+                _activeDieRollWindow = _greenDieRollWindow;
+            }
+            else
+            {
+                _activeDieRollWindow = _blueDieRollWindow;
+            }
+
+            _activeDieRollWindow.SetHighlighted(true);
+        }
+
+        private void MoveRight()
+        {
+            if (_activeDieRollWindow == null)
+            {
+                return;
+            }
+
+            _activeDieRollWindow.SetHighlighted(false);
+
+            if (_activeDieRollWindow == _redDieRollWindow)
+            {
+                _activeDieRollWindow = _greenDieRollWindow;
+            }
+            else if (_activeDieRollWindow == _greenDieRollWindow)
+            {
+                _activeDieRollWindow = _blueDieRollWindow;
+            }
+            else
+            {
+                _activeDieRollWindow = _redDieRollWindow;
+            }
+
+            _activeDieRollWindow.SetHighlighted(true);
+        }
+
+        private void RollMore()
+        {
+            if (_activeDieRollWindow == null)
+            {
+                return;
+            }
+
+            _activeDieRollWindow.Roll(1);
         }
     }
 }

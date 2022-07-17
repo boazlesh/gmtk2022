@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,9 @@ namespace Assets
         [SerializeField] private int _sum = 0;
         [SerializeField] private Button _button;
         [SerializeField] private int _bustThreshold;
+        [SerializeField] private GameObject _hightlight;
+
+        private List<Die> _dice = new List<Die>();
 
         private void OnEnable()
         {
@@ -29,6 +33,7 @@ namespace Assets
 
             _sumLabel.text = "0";
             _sum = 0;
+            _dice.Clear();
             _button.interactable = true;
         }
 
@@ -45,7 +50,15 @@ namespace Assets
             }
         }
 
-        public void Roll(float rollTimeSeconds) => StartCoroutine(RollRoutine(rollTimeSeconds));
+        public void Roll(float rollTimeSeconds)
+        {
+            if (!GetInteractable())
+            {
+                return;
+            }
+
+            StartCoroutine(RollRoutine(rollTimeSeconds));
+        }
 
         public IEnumerator RollRoutine(float rollTimeSeconds)
         {
@@ -67,12 +80,16 @@ namespace Assets
             die.SetFace(dieFace);
 
             _sum += DieFaceHelper.GetNumericValue(dieFace);
+            _dice.Add(die);
 
             if (IsBust())
             {
                 SetInteractable(false);
                 _sumLabel.text = "BUST!";
-                die.SetColor(_faceColor, mute: true);
+                foreach (Die currentDie in _dice)
+                {
+                    currentDie.SetColor(_faceColor, mute: true);
+                }
 
                 yield break;
             }
@@ -84,12 +101,29 @@ namespace Assets
 
         public int GetSum() => _sum;
 
-        public bool SetInteractable(bool interactable) => _button.interactable = interactable;
+        public bool SetInteractable(bool interactable)
+        {
+            _button.interactable = interactable;
+
+            if (!interactable)
+            {
+                SetHighlighted(false);
+            }
+
+            return _button.interactable;
+        }
+
+        public bool GetInteractable() => _button.interactable;
 
         [ContextMenu("Add Die")]
         public IEnumerator AddDieDebug()
         {
             yield return AddDieRoutine(DieFace.Five, rollTimeSeconds: 0.5f);
+        }
+
+        public void SetHighlighted(bool highlight)
+        {
+            _hightlight.gameObject.SetActive(highlight);
         }
     }
 }
