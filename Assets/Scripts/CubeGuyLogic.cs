@@ -123,6 +123,7 @@ public class CubeGuyLogic : MonoBehaviour
         _spriteSide.color = _faceColorMapping.GetColorFromFaceColor(_faceSide, !_actionInstances.ContainsKey(_faceSide));
 
         _playerHud.UpdateActions(_actionInstances);
+        _eyesSpriteRenderer.color = Color.white;
     }
 
     [ContextMenu("Color All Faces")]

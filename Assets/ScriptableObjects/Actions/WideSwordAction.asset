@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58c088a5646a4a247ba6afcd43229fee, type: 3}
-  m_Name: GunAction
+  m_Name: WideSwordAction
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 90b7da36515698b40b0c215ba7d61e26, type: 3}
-  _actionType: 1
-  _projectilePrefab: {fileID: 6481837373300218226, guid: b63963bb80b8b4e4692ed49ad13474e1, type: 3}
+  _sprite: {fileID: 21300000, guid: 3797382884343d8418e7eaa0ebff6489, type: 3}
+  _actionType: 5
+  _projectilePrefab: {fileID: 6481837373300218226, guid: 578ca148b3e741840bd05ae24204844c, type: 3}
   _heal: 0
