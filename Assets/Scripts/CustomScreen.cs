@@ -103,8 +103,6 @@ namespace Assets.Scripts
                 actionInstances.Add(FaceColor.Blue, new ActionInstance { Action = _blueActionBlock.GetAction(), Potency = _blueDieRollWindow.GetSum() });
             }
 
-            yield return actionInstances;
-
             _animator.SetTrigger("End");
             yield return new WaitForSeconds(1f);
 
@@ -118,6 +116,8 @@ namespace Assets.Scripts
             PauseUnpauseAllProjectilesThxbby(pauseOrUnpause: false);
 
             AudioManager.Instance.BlastIt();
+
+            yield return actionInstances;
         }
 
         private IEnumerator SetActions()
