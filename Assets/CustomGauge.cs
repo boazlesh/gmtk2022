@@ -37,6 +37,7 @@ namespace Assets
                 yield return null;
             }
 
+            _slider.value = _slider.maxValue;
             _label.enabled = enabled;
             OnCustomGaugeComplete?.Invoke();
         }
