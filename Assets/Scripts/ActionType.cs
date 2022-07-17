@@ -7,7 +7,7 @@
         Laser,
         Sword,
         Heal,
-        WideSword
+        WideSword,
         Shockwave
     }
 }
