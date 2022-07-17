@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: HealAction
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: 49a36603834c1ec4b85d31251cf043ae, type: 3}
-  _actionType: 3
+  _actionType: 4
   _projectilePrefab: {fileID: 6481837373300218226, guid: 8422c3f809d80a74592540adafbc7bbf, type: 3}
   _heal: 1

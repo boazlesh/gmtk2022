@@ -56,7 +56,7 @@ namespace Assets
             {
                 yield return new WaitUntil(() => _isTurnActive);
                 yield return new WaitForSeconds(_actionCooldownSeconds);
-                
+
                 if (!_isTurnActive)
                 {
                     continue;
@@ -76,11 +76,9 @@ namespace Assets
                         // If moved, don't also try to perform an action
                         continue;
                     }
-                    else
-                    {
-                        _previousMovement = null;
-                    }
                 }
+
+                _previousMovement = null;
 
                 yield return PerformActionRoutine();
             }
@@ -93,10 +91,20 @@ namespace Assets
                 case ActionType.Laser:
                     if (_boardPosition.y == _board._enemyMatrixEnd.y)
                     {
+                        if (_previousMovement.HasValue)
+                        {
+                            return null;
+                        }
+
                         return Direction.Up;
                     }
                     else if (_boardPosition.y == _board._enemyMatrixStart.y)
                     {
+                        if (_previousMovement.HasValue)
+                        {
+                            return null;
+                        }
+
                         return Direction.Down;
                     }
                     else
